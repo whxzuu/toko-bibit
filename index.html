@@ -1,833 +1,701 @@
 <!doctype html>
 <html lang="id" class="h-full">
-
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Toko Bibit Tanaman</title>
-     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-     <script src="/_sdk/element_sdk.js"></script>
-     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap"
-          rel="stylesheet">
-     <script>
-          tailwind.config = {
-               theme: {
-                    extend: {
-                         fontFamily: { poppins: ['Poppins', 'sans-serif'] }
-                    }
-               }
-          }
-     </script>
-     <style>
-          .fade-in {
-               animation: fadeIn 0.5s ease forwards;
-               opacity: 0;
-          }
-
-          @keyframes fadeIn {
-               to {
-                    opacity: 1;
-               }
-          }
-
-          .slide-in {
-               animation: slideIn 0.3s ease forwards;
-          }
-
-          @keyframes slideIn {
-               from {
-                    transform: translateX(100%);
-               }
-
-               to {
-                    transform: translateX(0);
-               }
-          }
-
-          .slide-in-left {
-               animation: slideInLeft 0.3s ease forwards;
-          }
-
-          @keyframes slideInLeft {
-               from {
-                    transform: translateX(-100%);
-               }
-
-               to {
-                    transform: translateX(0);
-               }
-          }
-
-          .slide-out {
-               animation: slideOut 0.3s ease forwards;
-          }
-
-          @keyframes slideOut {
-               from {
-                    transform: translateX(0);
-               }
-
-               to {
-                    transform: translateX(100%);
-               }
-          }
-
-          .slide-out-left {
-               animation: slideOutLeft 0.3s ease forwards;
-          }
-
-          @keyframes slideOutLeft {
-               from {
-                    transform: translateX(0);
-               }
-
-               to {
-                    transform: translateX(-100%);
-               }
-          }
-
-          .bounce-in {
-               animation: bounceIn 0.3s ease;
-          }
-
-          @keyframes bounceIn {
-               0% {
-                    transform: scale(0.8);
-               }
-
-               50% {
-                    transform: scale(1.1);
-               }
-
-               100% {
-                    transform: scale(1);
-               }
-          }
-
-          .pulse-scale {
-               animation: pulseScale 0.4s ease;
-          }
-
-          @keyframes pulseScale {
-               0% {
-                    transform: scale(1);
-               }
-
-               50% {
-                    transform: scale(1.05);
-               }
-
-               100% {
-                    transform: scale(1);
-               }
-          }
-
-          .toast-in {
-               animation: toastIn 0.4s ease, toastOut 0.4s ease 2.2s forwards;
-          }
-
-          @keyframes toastIn {
-               from {
-                    transform: translateY(20px);
-                    opacity: 0;
-               }
-
-               to {
-                    transform: translateY(0);
-                    opacity: 1;
-               }
-          }
-
-          @keyframes toastOut {
-               to {
-                    transform: translateY(20px);
-                    opacity: 0;
-               }
-          }
-
-          .tanya-ai-glow {
-               animation: tanyaAIGlow 2s ease-in-out infinite;
-          }
-
-          @keyframes tanyaAIGlow {
-               0%, 100% {
-                    opacity: 1;
-                    transform: translateY(0);
-               }
-               50% {
-                    opacity: 0.7;
-                    transform: translateY(-2px);
-               }
-          }
-
-          .filter-tab.active {
-               border-bottom: 3px solid currentColor;
-          }
-
-          .message-bubble {
-               animation: messageBounce 0.3s ease;
-          }
-
-          @keyframes messageBounce {
-               from {
-                    transform: scale(0.9) translateY(10px);
-                    opacity: 0;
-               }
-
-               to {
-                    transform: scale(1) translateY(0);
-                    opacity: 1;
-               }
-          }
-     </style>
-     <style>
-          body {
-               box-sizing: border-box;
-          }
-     </style>
-     <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-</head>
-
-<body class="h-full font-poppins">
-     <div id="app" class="h-full w-full overflow-auto" style="background:#f7fef6;">
-          <!-- Navbar -->
-          <nav id="navbar" style="background:#2d6a36;" class="sticky top-0 z-40 shadow-lg">
-               <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                         <span class="text-3xl">🌱</span>
-                         <div><span id="nav-store-name" class="text-white font-bold text-lg block">Toko Bibit
-                                   Hijau</span> <span class="text-green-100 text-xs">Bibit Segar &amp;
-                                   Berkualitas</span>
-                         </div>
-                    </div>
-                    <div class="flex items-center gap-2">
-                         <span class="text-green-100 text-lg tanya-ai-glow">Tanya AI ➡️</span>
-                         <button id="chat-btn" onclick="toggleChat()"
-                              class="text-white hover:bg-white/20 rounded-full p-3 transition"> <i
-                                   data-lucide="message-circle" style="width:24px;height:24px;"></i> </button> <button
-                              id="cart-btn" onclick="toggleCart()"
-                              class="relative text-white hover:bg-white/20 rounded-full p-3 transition"> <i
-                                   data-lucide="shopping-cart" style="width:24px;height:24px;"></i> <span
-                                   id="cart-badge"
-                                   class="absolute -top-1 -right-1 text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center hidden"
-                                   style="background:#ff6b6b;color:white;">0</span> </button>
-                    </div>
-               </div>
-          </nav><!-- Hero -->
-          <section id="hero-section" class="text-center py-16 px-4"
-               style="background:linear-gradient(135deg,#2d6a36 0%,#4a9d5f 100%);">
-               <div class="max-w-2xl mx-auto">
-                    <h1 id="hero-title"
-                         class="text-white font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4">🌿 Bibit
-                         Tanaman
-                         Berkualitas 🌿</h1>
-                    <p id="hero-subtitle" class="text-green-50 text-lg leading-relaxed">Pilihan bibit segar langsung
-                         dari petani pilihan. Pesan sekarang dan bayar mudah via WhatsApp!</p>
-               </div>
-          </section><!-- Filters -->
-          <section class="max-w-7xl mx-auto px-4 py-6">
-               <div class="flex gap-2 overflow-x-auto pb-2"><button onclick="filterCategory('semua')"
-                         class="filter-tab active px-4 py-2 rounded-full font-semibold text-sm transition whitespace-nowrap"
-                         id="filter-semua"
-                         style="background:#e8f5e9;color:#2d6a36;border:none;cursor:pointer;">Semua</button> <button
-                         onclick="filterCategory('buah')"
-                         class="filter-tab px-4 py-2 rounded-full font-semibold text-sm transition whitespace-nowrap"
-                         id="filter-buah" style="background:#f0f9f0;color:#666;border:none;cursor:pointer;">🥭
-                         Buah-buahan</button> <button onclick="filterCategory('sayuran')"
-                         class="filter-tab px-4 py-2 rounded-full font-semibold text-sm transition whitespace-nowrap"
-                         id="filter-sayuran" style="background:#f0f9f0;color:#666;border:none;cursor:pointer;">🥬
-                         Sayuran</button> <button onclick="filterCategory('hias')"
-                         class="filter-tab px-4 py-2 rounded-full font-semibold text-sm transition whitespace-nowrap"
-                         id="filter-hias" style="background:#f0f9f0;color:#666;border:none;cursor:pointer;">🌸 Tanaman
-                         Hias</button>
-               </div>
-          </section><!-- Products -->
-          <section class="max-w-7xl mx-auto px-4 pb-12">
-               <h2 id="products-heading" class="font-bold text-2xl mb-2" style="color:#2d6a36;">Katalog Produk</h2>
-               <p class="text-gray-500 text-sm mb-6">Temukan bibit pilihan terbaik untuk taman Anda</p>
-               <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
-          </section><!-- Testimonials -->
-          <section class="max-w-7xl mx-auto px-4 py-12">
-               <h2 class="font-bold text-2xl mb-2" style="color:#2d6a36;">⭐ Testimoni Pembeli</h2>
-               <p class="text-gray-500 text-sm mb-6">Kepuasan pelanggan adalah prioritas kami</p>
-               <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-          </section><!-- Cart Sidebar Overlay -->
-          <div id="cart-overlay" class="fixed inset-0 z-50 hidden">
-               <div class="absolute inset-0 bg-black/40" onclick="toggleCart()"></div>
-               <div id="cart-panel"
-                    class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col">
-                    <div class="flex items-center justify-between p-4 border-b" style="background:#3a7d44;">
-                         <h2 class="text-white font-bold text-lg flex items-center gap-2"><i data-lucide="shopping-cart"
-                                   style="width:20px;height:20px;"></i> Keranjang</h2><button onclick="toggleCart()"
-                              class="text-white hover:bg-white/20 rounded-full p-1"><i data-lucide="x"
-                                   style="width:22px;height:22px;"></i></button>
-                    </div>
-                    <div id="cart-items" class="flex-1 overflow-auto p-4 space-y-3"></div>
-                    <div id="cart-footer" class="border-t p-4 space-y-3 hidden">
-                         <div class="flex justify-between font-bold text-lg"><span>Total</span><span id="cart-total"
-                                   style="color:#2d6a36;">Rp 0</span>
-                         </div><button onclick="checkout()"
-                              class="w-full py-3 rounded-xl text-white font-bold text-lg flex items-center justify-center gap-2 transition hover:brightness-110"
-                              style="background:#25d366;">
-                              <svg viewbox="0 0 24 24" fill="white" width="22" height="22">
-                                   <path
-                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                                   <path
-                                        d="M12 0C5.373 0 0 5.373 0 12c0 2.138.558 4.143 1.534 5.886L.05 23.308a.5.5 0 00.642.642l5.422-1.484A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.39-1.587l-.386-.232-3.218.88.88-3.218-.232-.386A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                              </svg> Checkout via WhatsApp </button>
-                    </div>
-                    <div id="cart-empty" class="flex-1 flex flex-col items-center justify-center text-gray-400 p-8">
-                         <i data-lucide="shopping-bag" style="width:48px;height:48px;"></i>
-                         <p class="mt-3 font-semibold">Keranjang masih kosong</p>
-                         <p class="text-sm">Yuk pilih bibit favoritmu!</p>
-                    </div>
-               </div>
-          </div><!-- AI Chat Sidebar -->
-          <div id="chat-overlay" class="fixed inset-0 z-50 hidden">
-               <div class="absolute inset-0 bg-black/40" onclick="toggleChat()"></div>
-               <div id="chat-panel"
-                    class="absolute left-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col">
-                    <div class="flex items-center justify-between p-4 border-b" style="background:#3a7d44;">
-                         <h2 class="text-white font-bold text-lg flex items-center gap-2"><i data-lucide="sparkles"
-                                   style="width:20px;height:20px;"></i> Tanya AI</h2><button onclick="toggleChat()"
-                              class="text-white hover:bg-white/20 rounded-full p-1"><i data-lucide="x"
-                                   style="width:22px;height:22px;"></i></button>
-                    </div>
-                    <div id="chat-messages" class="flex-1 overflow-auto p-4 space-y-3 flex flex-col"></div>
-                    <div class="border-t p-4 flex gap-2">
-                         <input id="chat-input" type="text" placeholder="Tanya tentang bibit..."
-                              class="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2"
-                              style="border-color:#e8f5e9;" onkeypress="if(event.key==='Enter') sendChatMessage()">
-                         <button onclick="sendChatMessage()"
-                              class="px-4 py-2 rounded-lg text-white font-bold text-sm transition hover:brightness-110 flex items-center"
-                              style="background:#3a7d44;"><i data-lucide="send"
-                                   style="width:16px;height:16px;"></i></button>
-                    </div>
-               </div>
-          </div><!-- Toast -->
-          <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] hidden">
-               <div class="px-5 py-3 rounded-xl shadow-lg text-white font-semibold text-sm toast-in"
-                    style="background:#3a7d44;">
-                    ✅ Ditambahkan ke keranjang!
-               </div>
-          </div>
-          <footer class="text-center py-6 text-sm" style="color:#5ca868;">
-               <span id="footer-text">© 2026 Toko Bibit Hijau — Semua bibit dikirim segar 🌱</span>
-          </footer>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Bibit Tanaman</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { poppins: ['Poppins', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .fade-in { animation: fadeIn 0.5s ease forwards; opacity: 0; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .slide-up { animation: slideUp 0.6s ease forwards; opacity: 0; transform: translateY(30px); }
+    @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+    .bounce-in { animation: bounceIn 0.3s ease; }
+    @keyframes bounceIn { 0% { transform: scale(0.8); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    .toast-in { animation: toastIn 0.4s ease, toastOut 0.4s ease 2.2s forwards; }
+    @keyframes toastIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes toastOut { to { transform: translateY(20px); opacity: 0; } }
+    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.12); }
+    .leaf-float { animation: leafFloat 4s ease-in-out infinite; }
+    @keyframes leafFloat { 0%,100% { transform: rotate(-3deg) translateY(0); } 50% { transform: rotate(3deg) translateY(-8px); } }
+    .cart-badge { animation: badgePop 0.3s ease; }
+    @keyframes badgePop { 0% { transform: scale(0); } 60% { transform: scale(1.3); } 100% { transform: scale(1); } }
+    .slide-in-right { animation: slideInRight 0.35s ease forwards; }
+    @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    .slide-out-right { animation: slideOutRight 0.3s ease forwards; }
+    @keyframes slideOutRight { from { transform: translateX(0); } to { transform: translateX(100%); } }
+    .modal-scale-in { animation: modalScaleIn 0.3s ease forwards; transform-origin: center; }
+    @keyframes modalScaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .pulse-ring { animation: pulseRing 2s ease-in-out infinite; }
+    @keyframes pulseRing { 0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } }
+    html, body { scroll-behavior: smooth; }
+  </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full font-poppins bg-stone-50 text-stone-800 overflow-auto">
+  <div id="app" class="w-full min-h-full flex flex-col">
+   <!-- Header -->
+   <header id="header" class="sticky top-0 z-40 bg-emerald-800 text-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="text-3xl leaf-float">
+       🌿
+      </div>
+      <div>
+       <h1 id="el-store-name" class="text-lg font-bold leading-tight">Toko Bibit Tanaman</h1>
+       <p id="el-tagline" class="text-emerald-200 text-xs">Hijau di Rumah, Sejuk di Hati</p>
+      </div>
      </div>
-     <script>
-
-          const products = [
-               { id: 1, name: "Bibit Mangga Harumanis", price: 35000, emoji: "🥭", img: "https://images.unsplash.com/photo-1585518419759-87e0cd6c6e86?w=300&h=300&fit=crop", desc: "Cepat berbuah, rasa manis", category: "buah", rating: 4.8, sold: 156, bestseller: true },
-               { id: 2, name: "Bibit Jeruk Nipis", price: 25000, emoji: "🍋", img: "https://images.unsplash.com/photo-1599599810694-b5ac4dd0b5e5?w=300&h=300&fit=crop", desc: "Cocok untuk pekarangan", category: "buah", rating: 4.9, sold: 203, bestseller: true },
-               { id: 3, name: "Bibit Kopi Sambung", price: 45000, emoji: "🥑", img: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=300&fit=crop", desc: "Daging buah tebal & lembut", category: "buah", rating: 4.7, sold: 142, bestseller: false },
-               { id: 4, name: "Bibit Jambu Kristal", price: 30000, emoji: "🍈", img: "https://images.unsplash.com/photo-1586985289688-cacf0ac47b4a?w=300&h=300&fit=crop", desc: "Tanpa biji, manis segar", category: "buah", rating: 4.9, sold: 189, bestseller: true },
-               { id: 5, name: "Bibit Durian Musang King", price: 85000, emoji: "🍈", img: "https://images.unsplash.com/photo-1582023783890-8d30f8fa7d4a?w=300&h=300&fit=crop", desc: "Varietas premium Malaysia", category: "buah", rating: 4.6, sold: 87, bestseller: false },
-               { id: 6, name: "Bibit Kelengkeng", price: 40000, emoji: "🫐", img: "https://images.unsplash.com/photo-1585496726135-eeac1cf6d3d7?w=300&h=300&fit=crop", desc: "Buah manis bergerombol", category: "buah", rating: 4.8, sold: 128, bestseller: false },
-               { id: 7, name: "Bibit Cabai Rawit", price: 12000, emoji: "🌶️", img: "https://images.unsplash.com/photo-1563236527-661e89bebf45?w=300&h=300&fit=crop", desc: "Panen melimpah & pedas", category: "sayuran", rating: 4.9, sold: 312, bestseller: true },
-               { id: 8, name: "Bibit Tomat Cherry", price: 18000, emoji: "🍅", img: "https://images.unsplash.com/photo-1585518419759-87e0cd6c6e86?w=300&h=300&fit=crop", desc: "Manis, cocok hidroponik", category: "sayuran", rating: 4.8, sold: 267, bestseller: true },
-               { id: 9, name: "Bibit Bayam Merah", price: 8000, emoji: "🥬", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&h=300&fit=crop", desc: "Cepat panen, bergizi", category: "sayuran", rating: 4.7, sold: 198, bestseller: false },
-               { id: 10, name: "Bibit Kangkung Darat", price: 7000, emoji: "🌿", img: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=300&h=300&fit=crop", desc: "Tahan lama di pot", category: "sayuran", rating: 4.9, sold: 241, bestseller: true },
-               { id: 11, name: "Bibit Palem Merah", price: 28000, emoji: "🌹", img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300&h=300&fit=crop", desc: "Bunga indah & wangi", category: "hias", rating: 4.8, sold: 156, bestseller: false },
-               { id: 12, name: "Bibit Melati Putih", price: 22000, emoji: "🌼", img: "https://images.unsplash.com/photo-1585518419759-87e0cd6c6e86?w=300&h=300&fit=crop", desc: "Tanaman hias & aromatik", category: "hias", rating: 4.9, sold: 184, bestseller: true },
-               { id: 13, name: "Bibit Anthurium", price: 35000, emoji: "🦠", img: "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=300&h=300&fit=crop", desc: "Daun indah & tahan lama", category: "hias", rating: 4.6, sold: 92, bestseller: false },
-               { id: 14, name: "Bibit Bunga Matahari", price: 15000, emoji: "🌻", img: "https://images.unsplash.com/photo-1597848212624-753a6236a4ef?w=300&h=300&fit=crop", desc: "Warna cerah & mudah tumbuh", category: "hias", rating: 4.9, sold: 223, bestseller: true },
-               { id: 15, name: "Bibit Palem Kipas", price: 20000, emoji: "🌸", img: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=300&h=300&fit=crop", desc: "Bunga lebat warna-warni", category: "hias", rating: 4.7, sold: 167, bestseller: false },
-               { id: 16, name: "Bibit Anggrek Dendrobium", price: 55000, emoji: "💜", img: "https://images.unsplash.com/photo-1520763185298-1b434c919eba?w=300&h=300&fit=crop", desc: "Langka & eksklusif", category: "hias", rating: 4.8, sold: 64, bestseller: false },
-          ];
-
-          const testimonials = [
-               { name: "Ibu Siti", location: "Jakarta", product: "Bibit Mangga Harumanis", rating: 5, text: "Bibitnya sehat banget, sekarang sudah berbuah. Rekomendasi banget untuk yang mau tanam mangga! 😍", date: "2 minggu lalu", verified: true },
-               { name: "Pak Budi", location: "Bandung", product: "Bibit Cabai Rawit", rating: 5, text: "Panen melimpah! Tanaman tumbuh cepat dan sehat. Toko ini terpercaya, pelayanan juga ramah! 🌱", date: "1 bulan lalu", verified: true },
-               { name: "Rina Wijaya", location: "Surabaya", product: "Bibit Melati Putih", rating: 5, text: "Bibit berkualitas, wanginya harum sekali. Puas dengan pembeliannya, mau beli lagi! 🌼", date: "3 minggu lalu", verified: true },
-               { name: "Pak Hendra", location: "Yogyakarta", product: "Bibit Alpukat Mentega", rating: 4, text: "Investasi terbaik untuk halaman rumah. Tumbuh subur dan sangat responsif!", date: "1 bulan lalu", verified: true },
-               { name: "Linda Kusuma", location: "Medan", product: "Bibit Tomat Cherry", rating: 4, text: "Nanam di pot, hasil panen sangat banyak. Cocok untuk urban gardening! 🍅", date: "3 minggu lalu", verified: true },
-               { name: "Pak Wijaya", location: "Bali", product: "Bibit Bunga Matahari", rating: 5, text: "Bibitnya bagus, pengiriman cepat, packaging aman. Sudah jadi pelanggan setia! ⭐", date: "2 minggu lalu", verified: true },
-          ];
-
-          let cart = [];
-          let cartOpen = false;
-          let chatOpen = false;
-          let currentFilter = "semua";
-          let chatHistory = [];
-
-          const defaultConfig = {
-               store_name: "Toko Bibit Hijau",
-               whatsapp_number: "085648139460",
-               hero_title: "🌿 Bibit Tanaman Berkualitas",
-               hero_subtitle: "Pilihan bibit segar langsung dari petani pilihan. Pesan sekarang dan bayar mudah via WhatsApp!",
-               background_color: "#f7fef6",
-               primary_color: "#2d6a36",
-               text_color: "#2d6a36",
-               card_color: "#ffffff",
-               accent_color: "#ff6b6b",
-               font_family: "Poppins",
-               font_size: 16
-          };
-
-          const aiResponses = {
-               greeting: ["Halo! 👋 Ada yang bisa saya bantu? Tanya tentang produk, perawatan tanaman, atau hal lainnya! Atau bisa langsung tanya tentang bibit ke Nomor WhatsApp Pak Budi 💬 +6285648139460"],
-               product: [
-                    "Kami punya berbagai pilihan bibit {{category}}. Ingin tahu lebih detail tentang salah satu? Sebutkan nama atau emojinya!",
-                    "Produk {{category}} kami paling laris! Mau lihat harga dan deskripsinya?",
-                    "JIka Anda mencari bibit {{category}}, kami punya rekomendasi terbaik untuk Anda! Tanyakan lebih lanjut ya!",
-                    "Ke Nomor WhatsApp kami untuk katalog lengkap bibit {{category}} dan penawaran spesial hari ini! 📲",
-                    "WhatsApp 085648139460 untuk info lengkap tentang bibit {{category}} kami. Kami siap membantu! 🌱"
-               ],
-               care: [
-                    "🌱 Tips perawatan umum:\n• Siram pagi atau sore\n• Tempatkan di tempat terang\n• Gunakan pupuk berkala\n• Ganti pot saat sudah besar",
-                    "Kunci kesuksesan tanaman: konsistensi dalam penyiraman & pencahayaan yang tepat! 💡"
-               ],
-               price: [
-                    "Harga terjangkau & terkompetitif! Kami jamin kualitas terbaik dengan harga yang bersahabat. 💚",
-                    "Lihat di katalog produk untuk harga lengkap semua bibit kami!"
-               ],
-               order: [
-                    "Mudah! 🛒 Pilih bibit → Tambah ke keranjang → Checkout via WhatsApp → Tunggu konfirmasi & pengiriman!",
-                    "Prosesnya cepat & aman. Kami akan segera merespons pesanan Anda! ⚡"
-               ],
-               about: [
-                    "Kami adalah toko bibit tanaman terpercaya, menyediakan bibit segar berkualitas tinggi dari petani pilihan. 🌿",
-                    "Komitmen kami: bibit sehat, harga bersahabat, layanan terbaik! 💚"
-               ]
-          };
-
-          function detectIntent(msg) {
-               const m = msg.toLowerCase();
-               if (m.match(/(halo|hi|pagi|sore|malam|apa kabar)/)) return "greeting";
-               if (m.match(/(produk|bibit|pilihan|ada apa|apa aja|kategori|buah|sayur|hias)/)) return "product";
-               if (m.match(/(cara|perawatan|merawat|tips|bagaimana|gimana|harus|apa yang)/)) return "care";
-               if (m.match(/(harga|berapa|mahal|murah|promo|diskon)/)) return "price";
-               if (m.match(/(pesan|beli|order|checkout|keranjang|bagaimana|proses)/)) return "order";
-               if (m.match(/(siapa|tentang|toko|kalian|kami|yang ini)/)) return "about";
-               return "product";
-          }
-
-          function getAIResponse(msg) {
-               const intent = detectIntent(msg);
-               const responses = aiResponses[intent] || aiResponses.product;
-               let response = responses[Math.floor(Math.random() * responses.length)];
-
-               if (intent === "product") {
-                    const categories = ["Buah-buahan", "Sayuran", "Tanaman Hias"];
-                    const cat = categories[Math.floor(Math.random() * categories.length)];
-                    response = response.replace("{{category}}", cat.toLowerCase());
-               }
-
-               return response;
-          }
-
-          function fmt(n) { return "Rp " + n.toLocaleString("id-ID"); }
-
-          function renderProducts() {
-               const grid = document.getElementById("product-grid");
-               grid.innerHTML = "";
-               const filtered = currentFilter === "semua" ? products : products.filter(p => p.category === currentFilter);
-               filtered.forEach((p, i) => {
-                    const div = document.createElement("div");
-                    div.className = "rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all hover:scale-105 fade-in flex flex-col";
-                    div.style.cssText = `background:${window.elementSdk?.config?.card_color || defaultConfig.card_color};animation-delay:${i * 0.06}s`;
-                    const ratingStars = "⭐".repeat(Math.floor(p.rating));
-                    const badge = p.bestseller ? '<div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">🔥 Bestseller</div>' : '';
-                    div.innerHTML = `
-      <div class="relative p-4 text-center bg-gradient-to-b from-transparent to-white/5">
-        ${badge}
-        <img src="${p.img}" alt="${p.name}" class="w-full h-32 object-cover rounded-lg mb-2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="text-6xl" style="display: none;">${p.emoji}</div>
+     <div class="flex items-center gap-3">
+      <button id="btn-search-toggle" class="p-2 rounded-full hover:bg-emerald-700 transition" aria-label="Cari"> <i data-lucide="search" class="w-5 h-5"></i> </button> <button id="btn-cart" class="relative p-2 rounded-full hover:bg-emerald-700 transition" aria-label="Keranjang"> <i data-lucide="shopping-bag" class="w-5 h-5"></i> <span id="cart-count" class="hidden absolute -top-1 -right-1 bg-amber-400 text-emerald-900 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center cart-badge">0</span> </button>
+     </div>
+    </div><!-- Search Bar -->
+    <div id="search-bar" class="hidden bg-emerald-900 px-4 py-2">
+     <div class="max-w-6xl mx-auto relative"><input id="search-input" type="text" placeholder="Cari bibit tanaman..." class="w-full pl-10 pr-4 py-2 rounded-full bg-emerald-950/50 border border-emerald-600 text-white placeholder-emerald-300 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"> <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-400"></i>
+     </div>
+    </div>
+   </header><!-- Hero -->
+   <section class="bg-gradient-to-br from-emerald-700 via-emerald-800 to-teal-900 text-white px-4 py-10 relative overflow-hidden">
+    <div class="absolute top-4 right-4 text-6xl opacity-20 leaf-float">
+     🍃
+    </div>
+    <div class="absolute bottom-2 left-6 text-5xl opacity-15" style="animation: leafFloat 5s ease-in-out 1s infinite;">
+     🌱
+    </div>
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+     <h2 class="text-2xl md:text-4xl font-extrabold mb-2 fade-in">Tanam Kebahagiaan<br>
+       di Pekarangan Anda 🌻</h2>
+     <p class="text-emerald-200 text-sm md:text-base mb-5 fade-in" style="animation-delay:0.15s">Koleksi bibit terbaik untuk kebun impian Anda</p><button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-emerald-900 font-bold px-6 py-2.5 rounded-full transition shadow-lg fade-in" style="animation-delay:0.3s"> <i data-lucide="leaf" class="w-4 h-4"></i> Lihat Koleksi </button>
+    </div>
+   </section><!-- Categories -->
+   <nav class="bg-white shadow-sm sticky top-[60px] z-30">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto" id="category-tabs">
+     <button data-cat="semua" class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-semibold bg-emerald-700 text-white transition">Semua</button> <button data-cat="buah" class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🍎 Buah</button> <button data-cat="hias" class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🌸 Hias</button> <button data-cat="sayur" class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🥬 Sayur</button> <button data-cat="herbal" class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🌿 Herbal</button> <button data-cat="indoor" class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🏠 Indoor</button>
+    </div>
+   </nav><!-- Products Section Intro -->
+   <section class="bg-gradient-to-r from-emerald-600 to-teal-600 border-b border-emerald-700">
+    <div class="max-w-6xl mx-auto px-4 py-6 relative">
+     <div class="flex items-start gap-6">
+      <div class="flex-1 order-2 md:order-1">
+       <div class="w-12 h-1 bg-emerald-300 rounded-full mb-3"></div>
+       <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-2">Katalog Produk</h2>
+       <p class="text-emerald-100 text-xs md:text-sm leading-relaxed">Temukan bibit pilihan terbaik untuk taman Anda. Dari buah-buahan segar, tanaman hias cantik, sayuran organik, hingga herbal berkhasiat. Semua bibit berkualitas premium dan sudah siap tumbuh di halaman rumah Anda.</p>
       </div>
-      <div class="px-4 pb-4 flex flex-col flex-1">
-        <h3 class="font-bold text-sm mt-1 line-clamp-2" style="color:${window.elementSdk?.config?.text_color || defaultConfig.text_color}">${p.name}</h3>
-        <p class="text-xs text-gray-500 mt-1 flex-1">${p.desc}</p>
-        <div class="flex items-center gap-1 text-xs my-2">
-          <span style="color:#ffc107">${ratingStars}</span>
-          <span class="text-gray-400">${p.rating} (${p.sold})</span>
-        </div>
-        <p class="font-extrabold my-2" style="color:${window.elementSdk?.config?.primary_color || defaultConfig.primary_color}">${fmt(p.price)}</p>
-        <button onclick="addToCart(${p.id})" class="py-2 rounded-lg text-white text-xs font-bold flex items-center justify-center gap-1 transition hover:brightness-110" style="background:${window.elementSdk?.config?.primary_color || defaultConfig.primary_color}">
-          <i data-lucide="plus" style="width:14px;height:14px;"></i> Tambah
-        </button>
-      </div>`;
-                    grid.appendChild(div);
-               });
-               lucide.createIcons();
-          }
-
-          function renderTestimonials() {
-               const grid = document.getElementById("testimonials-grid");
-               grid.innerHTML = "";
-               testimonials.forEach((t, i) => {
-                    const div = document.createElement("div");
-                    div.className = "rounded-lg p-5 shadow-sm hover:shadow-lg transition-all fade-in flex flex-col";
-                    div.style.cssText = `background:${window.elementSdk?.config?.card_color || defaultConfig.card_color};animation-delay:${i * 0.08}s`;
-                    const stars = "⭐".repeat(t.rating);
-                    const badge = t.verified ? '<span class="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-semibold"><i data-lucide="check-circle" style="width:12px;height:12px;"></i> Terverifikasi</span>' : '';
-                    div.innerHTML = `
-           <div class="flex items-start justify-between mb-3">
-             <div>
-               <p class="font-bold text-sm" style="color:${window.elementSdk?.config?.text_color || defaultConfig.text_color}">${t.name}</p>
-               <p class="text-xs text-gray-500">${t.location}</p>
-             </div>
-             <div style="color:#ffc107">${stars}</div>
-           </div>
-           <div class="mb-3">
-             ${badge}
-             <p class="text-xs text-gray-500 mt-2">Produk: <span class="font-semibold" style="color:${window.elementSdk?.config?.primary_color || defaultConfig.primary_color}">${t.product}</span></p>
-           </div>
-           <p class="text-sm text-gray-700 mb-3 flex-1">"${t.text}"</p>
-           <p class="text-xs text-gray-400">${t.date}</p>`;
-                    grid.appendChild(div);
-               });
-               lucide.createIcons();
-          }
-
-          function filterCategory(cat) {
-               currentFilter = cat;
-               document.querySelectorAll(".filter-tab").forEach(btn => btn.classList.remove("active"));
-               document.getElementById(`filter-${cat}`).classList.add("active");
-               const filters = document.querySelectorAll(".filter-tab");
-               filters.forEach(f => {
-                    if (f.id === `filter-${cat}`) {
-                         f.style.background = `${window.elementSdk?.config?.primary_color || defaultConfig.primary_color}`;
-                         f.style.color = "white";
-                    } else {
-                         f.style.background = "#f0f9f0";
-                         f.style.color = "#666";
-                    }
-               });
-               renderProducts();
-          }
-
-          function addToCart(id) {
-               const existing = cart.find(c => c.id === id);
-               if (existing) { existing.qty++; } else { cart.push({ id, qty: 1 }); }
-               updateCartUI();
-               showToast();
-          }
-
-          function removeFromCart(id) {
-               cart = cart.filter(c => c.id !== id);
-               updateCartUI();
-          }
-
-          function changeQty(id, delta) {
-               const item = cart.find(c => c.id === id);
-               if (!item) return;
-               item.qty += delta;
-               if (item.qty <= 0) { cart = cart.filter(c => c.id !== id); }
-               updateCartUI();
-          }
-
-          function updateCartUI() {
-               const badge = document.getElementById("cart-badge");
-               const totalItems = cart.reduce((s, c) => s + c.qty, 0);
-               badge.textContent = totalItems;
-               badge.classList.toggle("hidden", totalItems === 0);
-               if (totalItems > 0) { badge.classList.add("bounce-in"); setTimeout(() => badge.classList.remove("bounce-in"), 300); }
-
-               const itemsEl = document.getElementById("cart-items");
-               const footer = document.getElementById("cart-footer");
-               const empty = document.getElementById("cart-empty");
-
-               if (cart.length === 0) {
-                    itemsEl.innerHTML = "";
-                    footer.classList.add("hidden");
-                    empty.classList.remove("hidden");
-                    return;
-               }
-               empty.classList.add("hidden");
-               footer.classList.remove("hidden");
-
-               itemsEl.innerHTML = "";
-               let total = 0;
-               cart.forEach(c => {
-                    const p = products.find(pr => pr.id === c.id);
-                    const sub = p.price * c.qty;
-                    total += sub;
-                    const div = document.createElement("div");
-                    div.className = "flex items-center gap-3 p-3 rounded-lg border";
-                    div.style.borderColor = "#e8f5e9";
-                    div.style.background = "#f9fff8";
-                    div.innerHTML = `
-      <span class="text-4xl">${p.emoji}</span>
-      <div class="flex-1 min-w-0">
-        <p class="font-bold text-sm truncate" style="color:${window.elementSdk?.config?.text_color || defaultConfig.text_color}">${p.name}</p>
-        <p class="text-xs text-gray-500">${fmt(p.price)}</p>
-        <div class="flex items-center gap-2 mt-1">
-          <button onclick="changeQty(${c.id},-1)" class="w-6 h-6 rounded-full flex items-center justify-center text-white text-sm font-bold text-xs" style="background:${window.elementSdk?.config?.primary_color || defaultConfig.primary_color}">−</button>
-          <span class="font-bold text-sm w-5 text-center">${c.qty}</span>
-          <button onclick="changeQty(${c.id},1)" class="w-6 h-6 rounded-full flex items-center justify-center text-white text-sm font-bold text-xs" style="background:${window.elementSdk?.config?.primary_color || defaultConfig.primary_color}">+</button>
-        </div>
+      <div class="hidden md:flex items-center order-1 md:order-2 -mt-2">
+       <div class="text-5xl leaf-float" style="animation-delay: 0.5s;">
+        🌾
+       </div>
       </div>
-      <div class="text-right">
-        <p class="font-bold text-sm" style="color:${window.elementSdk?.config?.primary_color || defaultConfig.primary_color}">${fmt(sub)}</p>
-        <button onclick="removeFromCart(${c.id})" class="text-red-400 hover:text-red-600 mt-1 text-xs"><i data-lucide="trash-2" style="width:14px;height:14px;"></i></button>
-      </div>`;
-                    itemsEl.appendChild(div);
-               });
-               document.getElementById("cart-total").textContent = fmt(total);
-               lucide.createIcons();
-          }
+     </div>
+    </div>
+   </section><!-- Products -->
+   <main id="products" class="flex-1 max-w-6xl mx-auto w-full px-4 py-6">
+    <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    <p id="no-results" class="hidden text-center text-stone-400 py-12 text-sm">Tidak ada tanaman ditemukan 😔</p>
+   </main><!-- Testimonials Intro -->
+   <section class="bg-gradient-to-br from-emerald-600 to-teal-600 border-t border-emerald-700">
+    <div class="max-w-6xl mx-auto px-4 py-6 relative">
+     <div class="flex items-start gap-6">
+      <div class="flex-1">
+       <div class="w-12 h-1 bg-emerald-300 rounded-full mb-3"></div>
+       <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-2">⭐ Testimoni Pembeli</h2>
+       <p class="text-emerald-100 text-xs md:text-sm leading-relaxed">Kepuasan pelanggan adalah prioritas kami. Ribuan pembeli telah membuktikan kualitas bibit dan layanan kami. Bergabunglah dengan keluarga besar Toko Bibit Tanaman dan rasakan perbedaannya!</p>
+      </div>
+      <div class="hidden md:flex items-center -mt-4">
+       <div class="text-6xl leaf-float" style="animation-delay: 1s;">
+        😊
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials -->
+   <section class="bg-white py-10 px-4 border-t border-stone-200">
+    <div class="max-w-6xl mx-auto">
+     <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-emerald-900 text-emerald-200 text-center py-6 px-4 text-xs">
+    <p>© 2026 <span id="el-footer-name">Toko Bibit Tanaman</span>. Semua hak dilindungi 🌿</p>
+    <p class="mt-1 text-emerald-400">Hubungi kami untuk pemesanan dalam jumlah besar</p>
+   </footer>
+  </div><!-- Cart Overlay -->
+  <div id="cart-overlay" class="hidden fixed inset-0 z-50">
+   <div class="absolute inset-0 bg-black/40" id="cart-backdrop"></div>
+   <aside id="cart-panel" class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col slide-in-right">
+    <div class="flex items-center justify-between px-5 py-4 border-b bg-emerald-800 text-white">
+     <h2 class="font-bold text-lg flex items-center gap-2"><i data-lucide="shopping-bag" class="w-5 h-5"></i> Keranjang</h2><button id="btn-close-cart" class="p-1 hover:bg-emerald-700 rounded-full transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div id="cart-items" class="flex-1 overflow-auto p-4 space-y-3"></div>
+    <div id="cart-empty" class="flex-1 flex flex-col items-center justify-center text-stone-400 p-6">
+     <div class="text-5xl mb-3">
+      🛒
+     </div>
+     <p class="font-medium">Keranjang masih kosong</p>
+     <p class="text-sm mt-1">Yuk mulai belanja bibit tanaman!</p>
+    </div>
+    <div id="cart-footer" class="hidden border-t bg-stone-50 p-4 space-y-3">
+     <div class="flex justify-between font-bold text-lg"><span>Total</span> <span id="cart-total" class="text-emerald-700">Rp 0</span>
+     </div><button id="btn-checkout" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2"> <i data-lucide="message-circle" class="w-5 h-5"></i> Pesan via WhatsApp </button>
+    </div>
+   </aside>
+  </div><!-- Product Detail Modal -->
+  <div id="product-modal" class="hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+   <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl modal-scale-in">
+    <div class="flex justify-between items-center p-5 border-b bg-emerald-50 sticky top-0">
+     <h2 id="modal-title" class="text-lg font-bold text-stone-800"></h2><button id="btn-close-modal" class="p-1 hover:bg-stone-200 rounded-full transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div class="p-6">
+     <!-- Images Gallery -->
+     <div class="grid grid-cols-3 gap-2 mb-6">
+      <div id="modal-image-1" class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl aspect-square flex items-center justify-center text-5xl border-2 border-emerald-200"></div>
+      <div id="modal-image-2" class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl aspect-square flex items-center justify-center text-5xl border border-stone-200"></div>
+      <div id="modal-image-3" class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl aspect-square flex items-center justify-center text-5xl border border-stone-200"></div>
+     </div><!-- Price & Stock -->
+     <div class="mb-4 pb-4 border-b">
+      <p class="text-emerald-700 font-bold text-2xl mb-2" id="modal-price"></p>
+      <div id="modal-stock" class="text-sm text-stone-600"></div>
+     </div><!-- Description -->
+     <div class="mb-5">
+      <h3 class="font-bold text-stone-800 mb-2">Deskripsi Produk</h3>
+      <p id="modal-full-desc" class="text-stone-700 text-sm leading-relaxed"></p>
+     </div><!-- Specs -->
+     <div class="mb-6 bg-stone-50 rounded-xl p-4">
+      <h3 class="font-bold text-stone-800 mb-3">Spesifikasi</h3>
+      <div class="grid grid-cols-3 gap-3 text-sm">
+       <div>
+        <p class="text-stone-500 text-xs font-medium mb-1">Matang Dalam</p>
+        <p id="modal-spec-umur" class="font-semibold text-stone-800"></p>
+       </div>
+       <div>
+        <p class="text-stone-500 text-xs font-medium mb-1">Tinggi</p>
+        <p id="modal-spec-tinggi" class="font-semibold text-stone-800"></p>
+       </div>
+       <div>
+        <p class="text-stone-500 text-xs font-medium mb-1">Perawatan</p>
+        <p id="modal-spec-perawatan" class="font-semibold text-stone-800"></p>
+       </div>
+      </div>
+     </div><!-- Quantity & Add Button -->
+     <div class="flex gap-3 items-end">
+      <div class="flex items-center gap-2 bg-stone-100 rounded-xl p-2 flex-1">
+       <button id="btn-qty-minus" class="w-8 h-8 flex items-center justify-center bg-white rounded-lg hover:bg-red-50 transition font-bold text-red-500">−</button> <span id="modal-qty" class="font-bold text-lg flex-1 text-center">1</span> <button id="btn-qty-plus" class="w-8 h-8 flex items-center justify-center bg-white rounded-lg hover:bg-emerald-50 transition font-bold text-emerald-700">+</button>
+      </div><button id="btn-add-to-cart-modal" class="flex-1 bg-emerald-700 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2"> <i data-lucide="plus" class="w-5 h-5"></i> Tambah </button>
+     </div>
+    </div>
+   </div>
+  </div><!-- Toast -->
+  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] flex flex-col items-center gap-2"></div><!-- AI ChatBot Widget -->
+  <div id="chatbot-widget" class="fixed bottom-6 right-6 z-[55] flex flex-col gap-3 items-end"><!-- Chat Panel -->
+   <div id="chat-panel" class="hidden bg-white rounded-2xl shadow-2xl w-96 max-h-96 flex flex-col border border-stone-100 slide-in-right">
+    <div class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-5 py-4 rounded-t-2xl flex items-center justify-between">
+     <div class="flex items-center gap-2"><i data-lucide="bot" class="w-5 h-5"></i> <span class="font-bold">Toko Bot 🌱</span>
+     </div><button id="btn-close-chatbot" class="p-1 hover:bg-emerald-700 rounded-full transition"> <i data-lucide="x" class="w-4 h-4"></i> </button>
+    </div>
+    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 bg-stone-50"></div>
+    <div class="border-t p-4 bg-white rounded-b-2xl flex gap-2"><input id="chat-input" type="text" placeholder="Tanya tentang tanaman..." class="flex-1 px-3 py-2 rounded-lg border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"> <button id="btn-send-chat" class="bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded-lg transition"> <i data-lucide="send" class="w-4 h-4"></i> </button>
+    </div>
+   </div><!-- Floating Button --> <button id="btn-chatbot-toggle" class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all hover:scale-110 flex items-center justify-center pulse-ring"> <i data-lucide="message-circle" class="w-6 h-6"></i> </button>
+  </div>
+  <script>
+    // ===== DATA =====
+    const plants = [
+      { id:1, name:"Bibit Mangga Harum Manis", cat:"buah", price:45000, emoji:"🥭", desc:"Berbuah dalam 2-3 tahun, rasa manis legit", fullDesc:"Bibit mangga harum manis berkualitas premium dari pohon induk pilihan. Cocok ditanam di halaman atau pot besar. Tahan terhadap berbagai iklim di Indonesia. Sudah aklimatisasi dan siap tumbuh.", images:["🥭","🥭","🥭"], specs:{umur:"2-3 tahun", tinggi:"40-60cm", perawatan:"Mudah"}, stock:15, bestseller:true },
+      { id:2, name:"Bibit Durian Musang King", cat:"buah", price:120000, emoji:"🍈", desc:"Varietas premium asal Malaysia", fullDesc:"Durian Musang King terkenal dengan daging yang lembut dan rasa yang creamy. Bibit hasil sambung dengan tingkat keberhasilan tinggi. Proses aklimatisasi sudah sempurna.", images:["🍈","🍈","🍈"], specs:{umur:"4-5 tahun", tinggi:"50-70cm", perawatan:"Sedang"}, stock:8, bestseller:true },
+      { id:3, name:"Bibit Alpukat Mentega", cat:"buah", price:55000, emoji:"🥑", desc:"Daging buah tebal & lembut", fullDesc:"Alpukat mentega dengan daging buah yang tebal, lembut, dan berasa premium. Bibit hasil sambung langsung dari kebun terpercaya. Tahan terhadap hama dan penyakit.", images:["🥑","🥑","🥑"], specs:{umur:"3-4 tahun", tinggi:"45-60cm", perawatan:"Mudah"}, stock:20 },
+      { id:4, name:"Bibit Jeruk Dekopon", cat:"buah", price:65000, emoji:"🍊", desc:"Jeruk Jepang tanpa biji, super manis", fullDesc:"Jeruk Dekopon dari Jepang dengan rasa super manis dan tanpa biji. Cocok untuk cemilan sehat keluarga. Hasil sambung dengan sertifikat keaslian.", images:["🍊","🍊","🍊"], specs:{umur:"2-3 tahun", tinggi:"40-55cm", perawatan:"Mudah"}, stock:12 },
+      { id:5, name:"Monstera Deliciosa", cat:"hias", price:85000, emoji:"🌿", desc:"Daun ikonik berlubang, cocok indoor", fullDesc:"Monstera dengan daun besar berlubang yang indah. Cocok untuk dekorasi interior rumah atau kantor. Tahan dalam kondisi cahaya rendah dan mudah dirawat.", images:["🌿","🌿","🌿"], specs:{umur:"Matang", tinggi:"30-50cm", perawatan:"Sangat Mudah"}, stock:10, bestseller:true },
+      { id:6, name:"Anggrek Bulan Putih", cat:"hias", price:95000, emoji:"🌸", desc:"Bunga elegan tahan lama", fullDesc:"Anggrek bulan dengan bunga putih bersih yang elegan. Tahan mekar hingga 3 bulan. Cocok untuk hadiah atau dekorasi istimewa.", images:["🌸","🌸","🌸"], specs:{umur:"Siap Mekar", tinggi:"Sesuai Pot", perawatan:"Sedang"}, stock:7 },
+      { id:7, name:"Bougenville Pink", cat:"hias", price:35000, emoji:"🌺", desc:"Berbunga sepanjang tahun", fullDesc:"Bunga Bougenville pink yang cantik dan berbunga sepanjang tahun. Tanaman keras yang tahan panas dan kering. Cocok untuk taman minimalis.", images:["🌺","🌺","🌺"], specs:{umur:"Matang", tinggi:"30-40cm", perawatan:"Mudah"}, stock:25 },
+      { id:8, name:"Bibit Tomat Cherry", cat:"sayur", price:15000, emoji:"🍅", desc:"Panen cepat 60 hari, buah melimpah", fullDesc:"Tomat cherry yang berbuah deras dalam 60 hari. Cocok ditanam di pot atau polybag. Rasa manis dan cocok untuk cemilan atau salad.", images:["🍅","🍅","🍅"], specs:{umur:"60 hari", tinggi:"50-80cm", perawatan:"Mudah"}, stock:30, bestseller:true },
+      { id:9, name:"Bibit Cabai Rawit", cat:"sayur", price:12000, emoji:"🌶️", desc:"Super pedas, produktif tinggi", fullDesc:"Cabai rawit super pedas dengan produktivitas tinggi. Bisa panen hingga 6-8 bulan berturut-turut. Cocok untuk bumbu dapur atau usaha.", images:["🌶️","🌶️","🌶️"], specs:{umur:"70 hari", tinggi:"60-100cm", perawatan:"Mudah"}, stock:35 },
+      { id:10, name:"Bibit Kangkung Organik", cat:"sayur", price:8000, emoji:"🥬", desc:"Siap panen dalam 25 hari", fullDesc:"Kangkung organik tanpa pestisida berbahaya. Siap panen dalam 25 hari. Cocok untuk sayur sehat keluarga atau dijual kembali.", images:["🥬","🥬","🥬"], specs:{umur:"25 hari", tinggi:"30-40cm", perawatan:"Sangat Mudah"}, stock:50 },
+      { id:11, name:"Bibit Jahe Merah", cat:"herbal", price:25000, emoji:"🫚", desc:"Khasiat tinggi untuk kesehatan", fullDesc:"Jahe merah berkhasiat tinggi untuk kesehatan. Cocok untuk minuman sehat atau olahan herbal. Bibit berkualitas dari kebun terpilih.", images:["🫚","🫚","🫚"], specs:{umur:"8-10 bulan", tinggi:"Rimpang", perawatan:"Mudah"}, stock:18, bestseller:true },
+      { id:12, name:"Bibit Kunyit Organik", cat:"herbal", price:20000, emoji:"✨", desc:"Anti-inflamasi alami", fullDesc:"Kunyit organik dengan kandungan kurkumin tinggi. Anti-inflamasi alami untuk kesehatan. Cocok untuk jamu tradisional atau olahan herbal.", images:["✨","✨","✨"], specs:{umur:"8-9 bulan", tinggi:"Rimpang", perawatan:"Mudah"}, stock:22 },
+      { id:13, name:"Bibit Lidah Buaya", cat:"herbal", price:18000, emoji:"🪴", desc:"Multifungsi: kecantikan & kesehatan", fullDesc:"Lidah buaya dengan manfaat multifungsi untuk kecantikan dan kesehatan. Cocok untuk maskaran atau minuman herbal. Sangat mudah dirawat.", images:["🪴","🪴","🪴"], specs:{umur:"Matang", tinggi:"30-50cm", perawatan:"Sangat Mudah"}, stock:28 },
+      { id:14, name:"Sansevieria (Lidah Mertua)", cat:"indoor", price:40000, emoji:"🌱", desc:"Pembersih udara terbaik, minim perawatan", fullDesc:"Sansevieria pembersih udara terbaik yang tidak perlu perawatan rumit. Cocok untuk rumah atau kantor. Tahan dalam kondisi cahaya rendah.", images:["🌱","🌱","🌱"], specs:{umur:"Matang", tinggi:"60-80cm", perawatan:"Sangat Mudah"}, stock:16 },
+      { id:15, name:"Pothos Golden", cat:"indoor", price:30000, emoji:"💚", desc:"Tanaman rambat cantik, sangat mudah", fullDesc:"Pothos golden dengan daun hijau keemasan yang indah. Tanaman rambat cocok untuk gantung atau merambat. Sangat mudah dirawat dan cepat tumbuh.", images:["💚","💚","💚"], specs:{umur:"Matang", tinggi:"Rambat", perawatan:"Sangat Mudah"}, stock:20 },
+      { id:16, name:"Kaktus Mini Set (3pcs)", cat:"indoor", price:50000, emoji:"🌵", desc:"Set dekorasi meja kerja", fullDesc:"Set 3 kaktus mini unik untuk dekorasi meja kerja atau ruang tamu. Cocok untuk hadiah atau koleksi pribadi. Tahan lama dan tidak perlu sering disiram.", images:["🌵","🌵","🌵"], specs:{umur:"Matang", tinggi:"10-15cm", perawatan:"Sangat Mudah"}, stock:14 },
+    ];
 
-          function toggleCart() {
-               const overlay = document.getElementById("cart-overlay");
-               const panel = document.getElementById("cart-panel");
-               if (!cartOpen) {
-                    overlay.classList.remove("hidden");
-                    panel.classList.remove("slide-out");
-                    panel.classList.add("slide-in");
-                    cartOpen = true;
-               } else {
-                    panel.classList.remove("slide-in");
-                    panel.classList.add("slide-out");
-                    setTimeout(() => { overlay.classList.add("hidden"); }, 280);
-                    cartOpen = false;
-               }
-          }
+    // ===== CHATBOT RESPONSES =====
+    const chatbotResponses = {
+      greeting: ["Hai! 👋 Apa yang bisa Toko Bot bantu hari ini? 🌱", "Halo! Selamat datang di Toko Bibit Tanaman! 🌿 Ada yang bisa dibantu?", "Salam hijau! 🌿 Apa pertanyaan Anda tentang tanaman?"],
+      payment: ["Kami terima pembayaran melalui: transfer bank, e-wallet (GCash, Gopay), dan cicilan. Tanya admin untuk detail! 💳", "Untuk info pembayaran & cicilan, silahkan hubungi admin via WhatsApp ya! 📱"],
+      shipping: ["Pengiriman ke seluruh Indonesia dengan JNE, Gojek, atau Grab. Gratis ongkir untuk pembelian di atas Rp500rb! 🚚", "Kami kirim cepat & aman! Tanyakan ongkir ke admin untuk lokasi Anda. 📦"],
+      care: ["Perawatan tergantung jenis tanaman. Bibit kami dilengkapi panduan lengkap! 📋 Tanya admin untuk detail spesifik. 🪴", "Untuk tips perawatan, cek panduan yang ada di box bibit atau tanya admin! 🌱"],
+      bestseller: ["Produk bestseller kami: Mangga Harum Manis, Durian Musang King, Monstera, Tomat Cherry, & Jahe Merah! 🔥 Semuanya terjual cepat!", "Best seller kami paling diminati pembeli! Stok terbatas, pesan sekarang juga! ⭐"],
+      help: ["Apa yang ingin kamu tanyakan? 😊\n• Rekomendasi tanaman\n• Info produk\n• Ongkir & pembayaran\n• Cara perawatan\n• Lainnya"],
+      default: ["Maaf, aku belum ngerti. Bisa rephrase? 😅 Atau tanya ke admin via WhatsApp untuk pertanyaan lebih lanjut! 📱. Silahkan Hubungi Admin +6285648139460"],
+    };
 
-          function toggleChat() {
-               const overlay = document.getElementById("chat-overlay");
-               const panel = document.getElementById("chat-panel");
-               if (!chatOpen) {
-                    overlay.classList.remove("hidden");
-                    panel.classList.remove("slide-out-left");
-                    panel.classList.add("slide-in-left");
-                    chatOpen = true;
-                    if (chatHistory.length === 0) initChat();
-                    setTimeout(() => document.getElementById("chat-input").focus(), 300);
-               } else {
-                    panel.classList.remove("slide-in-left");
-                    panel.classList.add("slide-out-left");
-                    setTimeout(() => { overlay.classList.add("hidden"); }, 280);
-                    chatOpen = false;
-               }
-          }
+    let cart = [];
+    let currentCat = 'semua';
+    let searchQuery = '';
+    let modalQty = 1;
+    let currentPlantId = null;
 
-          function initChat() {
-               const messagesEl = document.getElementById("chat-messages");
-               messagesEl.innerHTML = "";
-               chatHistory = [];
-               const greeting = "Halo! 👋 Selamat datang di Toko Bibit Hijau. Tanya tentang produk, perawatan tanaman, atau cara memesan! Saya siap membantu 🌱";
-               addChatMessage("bot", greeting);
-          }
+    // ===== HELPERS =====
+    function formatPrice(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
 
-          function addChatMessage(role, text) {
-               const messagesEl = document.getElementById("chat-messages");
-               const div = document.createElement("div");
-               div.className = `message-bubble ${role === "bot" ? "self-start" : "self-end"} max-w-xs px-4 py-2 rounded-lg text-sm`;
+    function showToast(msg) {
+      const c = document.getElementById('toast-container');
+      const t = document.createElement('div');
+      t.className = 'toast-in bg-emerald-800 text-white px-5 py-2.5 rounded-full shadow-lg text-sm font-medium flex items-center gap-2';
+      t.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4"></i> ${msg}`;
+      c.appendChild(t);
+      lucide.createIcons();
+      setTimeout(() => t.remove(), 2800);
+    }
 
-               if (role === "bot") {
-                    div.style.background = "#e8f5e9";
-                    div.style.color = "#2d6a36";
-               } else {
-                    div.style.background = "#3a7d44";
-                    div.style.color = "white";
-               }
+    // ===== CHATBOT =====
+    function getChatbotResponse(msg) {
+      const lower = msg.toLowerCase();
+      if (lower.includes('halo') || lower.includes('hai') || lower.includes('helo')) {
+        return chatbotResponses.greeting[Math.floor(Math.random() * chatbotResponses.greeting.length)];
+      }
+      if (lower.includes('bayar') || lower.includes('pembayaran') || lower.includes('cicil')) {
+        return chatbotResponses.payment[Math.floor(Math.random() * chatbotResponses.payment.length)];
+      }
+      if (lower.includes('kirim') || lower.includes('ongkir') || lower.includes('pengiriman')) {
+        return chatbotResponses.shipping[Math.floor(Math.random() * chatbotResponses.shipping.length)];
+      }
+      if (lower.includes('rawat') || lower.includes('perawatan') || lower.includes('merawat')) {
+        return chatbotResponses.care[Math.floor(Math.random() * chatbotResponses.care.length)];
+      }
+      if (lower.includes('bestseller') || lower.includes('best seller') || lower.includes('favorit')) {
+        return chatbotResponses.bestseller[Math.floor(Math.random() * chatbotResponses.bestseller.length)];
+      }
+      if (lower.includes('bantuan') || lower.includes('help') || lower.includes('bisa apa')) {
+        return chatbotResponses.help[0];
+      }
+      return chatbotResponses.default[0];
+    }
 
-               div.textContent = text;
-               messagesEl.appendChild(div);
-               messagesEl.scrollTop = messagesEl.scrollHeight;
-               chatHistory.push({ role, text });
-          }
+    function addChatMessage(text, isBot) {
+      const container = document.getElementById('chat-messages');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `flex ${isBot ? 'justify-start' : 'justify-end'}`;
+      msgDiv.innerHTML = `<div class="${isBot ? 'bg-emerald-100 text-stone-800' : 'bg-emerald-600 text-white'} px-3 py-2 rounded-lg text-sm max-w-xs break-words">${text}</div>`;
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+    }
 
-          function sendChatMessage() {
-               const input = document.getElementById("chat-input");
-               const msg = input.value.trim();
-               if (!msg) return;
+    document.getElementById('btn-chatbot-toggle').addEventListener('click', () => {
+      const panel = document.getElementById('chat-panel');
+      if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        document.getElementById('chat-input').focus();
+      } else {
+        panel.classList.add('hidden');
+      }
+    });
 
-               addChatMessage("user", msg);
-               input.value = "";
+    document.getElementById('btn-close-chatbot').addEventListener('click', () => {
+      document.getElementById('chat-panel').classList.add('hidden');
+    });
 
-               setTimeout(() => {
-                    const response = getAIResponse(msg);
-                    addChatMessage("bot", response);
-                    lucide.createIcons();
-               }, 600);
-          }
+    document.getElementById('btn-send-chat').addEventListener('click', () => {
+      const input = document.getElementById('chat-input');
+      const msg = input.value.trim();
+      if (!msg) return;
+      addChatMessage(msg, false);
+      input.value = '';
+      setTimeout(() => {
+        const response = getChatbotResponse(msg);
+        addChatMessage(response, true);
+      }, 400);
+    });
 
-          function showToast() {
-               const t = document.getElementById("toast");
-               t.classList.remove("hidden");
-               setTimeout(() => t.classList.add("hidden"), 2700);
-          }
+    document.getElementById('chat-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') document.getElementById('btn-send-chat').click();
+    });
 
-          function checkout() {
-               if (cart.length === 0) return;
-               const cfg = window.elementSdk?.config || defaultConfig;
-               let waNumber = cfg.whatsapp_number || defaultConfig.whatsapp_number;
-               // Format nomor untuk WhatsApp (tambah 62 jika dimulai dengan 0)
-               if (waNumber.startsWith("0")) {
-                    waNumber = "62" + waNumber.substring(1);
-               }
-               let msg = "Halo Admin Toko Bibit Hijau 🌱\n\n";
-               msg += "Saya ingin melakukan pemesanan dengan detail berikut:\n\n";
-               msg += "📦 *Pesanan:*\n";
-               let total = 0;
-               cart.forEach(c => {
-                    const p = products.find(pr => pr.id === c.id);
-                    const sub = p.price * c.qty;
-                    total += sub;
-                    msg += `• ${p.name} x${c.qty} = ${fmt(sub)}\n`;
-               });
-               msg += `\n*Total: ${fmt(total)}*\n\nMohon info ongkir dan rekening pembayaran. Terima kasih! 🌱`;
-               const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
-               window.open(url, "_blank");
-          }
+    function openProductModal(plantId) {
+      const plant = plants.find(p => p.id === plantId);
+      if (!plant) return;
+      currentPlantId = plantId;
+      modalQty = 1;
+      document.getElementById('modal-title').textContent = plant.name;
+      document.getElementById('modal-image-1').textContent = plant.images[0];
+      document.getElementById('modal-image-2').textContent = plant.images[1];
+      document.getElementById('modal-image-3').textContent = plant.images[2];
+      document.getElementById('modal-price').textContent = formatPrice(plant.price);
+      document.getElementById('modal-stock').innerHTML = plant.stock > 5 ? `<span class="text-emerald-600 font-semibold">✓ Stok tersedia (${plant.stock})</span>` : `<span class="text-red-600 font-semibold">⚠ Sisa stok ${plant.stock}</span>`;
+      document.getElementById('modal-full-desc').textContent = plant.fullDesc;
+      document.getElementById('modal-spec-umur').textContent = plant.specs.umur;
+      document.getElementById('modal-spec-tinggi').textContent = plant.specs.tinggi;
+      document.getElementById('modal-spec-perawatan').textContent = plant.specs.perawatan;
+      document.getElementById('modal-qty').textContent = modalQty;
+      document.getElementById('product-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
 
-          // Element SDK
-          function applyConfig(config) {
-               const c = { ...defaultConfig, ...config };
-               const font = c.font_family || defaultConfig.font_family;
-               const baseFont = "Poppins, sans-serif";
-               const fontStack = font === "Poppins" ? baseFont : `${font}, ${baseFont}`;
-               const bs = c.font_size || defaultConfig.font_size;
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+      currentPlantId = null;
+      modalQty = 1;
+    }
 
-               document.getElementById("app").style.background = c.background_color;
-               document.getElementById("app").style.fontFamily = fontStack;
-               document.getElementById("navbar").style.background = c.primary_color;
-               document.getElementById("hero-section").style.background = `linear-gradient(135deg,${c.primary_color} 0%,${c.primary_color}cc 100%)`;
-               document.getElementById("nav-store-name").textContent = c.store_name;
-               document.getElementById("nav-store-name").style.fontSize = `${bs * 1.2}px`;
-               document.getElementById("hero-title").textContent = c.hero_title;
-               document.getElementById("hero-title").style.fontSize = `${bs * 2.5}px`;
-               document.getElementById("hero-subtitle").textContent = c.hero_subtitle;
-               document.getElementById("hero-subtitle").style.fontSize = `${bs * 1.1}px`;
-               document.getElementById("products-heading").style.color = c.text_color;
-               document.getElementById("products-heading").style.fontSize = `${bs * 1.6}px`;
-               document.getElementById("footer-text").style.color = c.primary_color + "99";
+    // ===== TESTIMONIALS DATA =====
+    const testimonials = [
+      { name: "Budi Santoso", address: "Jakarta", rating: 5, product: "Bibit Mangga Harum Manis", text: "Bibit mangganya berkualitas banget! Sudah berbuah lebih cepat dari estimasi. Toko ini recommended! 👌", timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000) },
+      { name: "Siti Nur Azizah", address: "Bandung", rating: 5, product: "Monstera Deliciosa", text: "Monstera-nya sehat dan tumbuh subur. Pelayanan customer service sangat responsif. Terima kasih! 🌿", timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000) },
+      { name: "Rudi Hermawan", address: "Surabaya", rating: 5, product: "Bibit Cabai Rawit", text: "Bibit cabai rawit-nya panen melimpah! Kualitas terbaik dengan harga bersahabat. Balik lagi deh! 🌶️", timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) },
+      { name: "Dewi Lestari", address: "Medan", rating: 5, product: "Bibit Durian Musang King", text: "Durian musang king-nya tumbuh subur dan sehat. Bibitnya berkualitas premium seperti deskripsi. Puas banget! 🍈", timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) },
+      { name: "Ahmad Wijaya", address: "Yogyakarta", rating: 5, product: "Pothos Golden", text: "Tanaman rambat ini tumbuh cepat dan mudah dirawat. Cocok banget untuk hiasan di ruang kerja. Recommended! 💚", timestamp: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) },
+      { name: "Waluyo", address: "Banyumas", rating: 5, product: "Bibit Alpukat Mentega", text: "Bibit alpukat mentega-nya tumbuh subur dan sehat. Kualitasnya bagus dan harga terjangkau. Recommended! 🥑", timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000) },
+    ];
 
-               document.querySelectorAll(".filter-tab").forEach(f => {
-                    if (f.classList.contains("active")) {
-                         f.style.background = c.primary_color;
-                         f.style.color = "white";
-                    }
-               });
+    function getTimeAgo(date) {
+      const now = new Date();
+      const diff = now - date;
+      const minutes = Math.floor(diff / 60000);
+      const hours = Math.floor(diff / 3600000);
+      const days = Math.floor(diff / 86400000);
 
-               renderProducts();
-               renderTestimonials(); // ✅ FIX DI SINI
-               updateCartUI();
-          }
+      if (minutes < 1) return 'Baru saja';
+      if (minutes < 60) return `${minutes} menit yang lalu`;
+      if (hours < 24) return `${hours} jam yang lalu`;
+      if (days < 30) return `${days} hari yang lalu`;
+      return date.toLocaleDateString('id-ID');
+    }
 
-          window.elementSdk.init({
-               defaultConfig,
-               onConfigChange: async (config) => applyConfig(config),
-               mapToCapabilities: (config) => ({
-                    recolorables: [
-                         { get: () => config.background_color || defaultConfig.background_color, set: v => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-                         { get: () => config.card_color || defaultConfig.card_color, set: v => { config.card_color = v; window.elementSdk.setConfig({ card_color: v }); } },
-                         { get: () => config.text_color || defaultConfig.text_color, set: v => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-                         { get: () => config.primary_color || defaultConfig.primary_color, set: v => { config.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); } },
-                         { get: () => config.accent_color || defaultConfig.accent_color, set: v => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
-                    ],
-                    borderables: [],
-                    fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: v => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
-                    fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: v => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } },
-               }),
-               mapToEditPanelValues: (config) => new Map([
-                    ["store_name", config.store_name || defaultConfig.store_name],
-                    ["whatsapp_number", config.whatsapp_number || defaultConfig.whatsapp_number],
-                    ["hero_title", config.hero_title || defaultConfig.hero_title],
-                    ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
-               ])
-          });
-
-          renderProducts();
-          renderTestimonials();
-          lucide.createIcons();
-     </script>
-     <!-- <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9e855b4fa5c9a3d9',t:'MTc3NTUyNjM2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script> -->
-
-     <!-- GANTI BAGIAN PALING BAWAH SCRIPT KAMU DENGAN INI -->
-
-     <script>
-          // ================= SAFE INIT =================
-
-          // cek apakah SDK ada
-          function safeInit() {
-               if (window.elementSdk && window.elementSdk.init) {
-                    window.elementSdk.init({
-                         defaultConfig,
-                         onConfigChange: async (config) => applyConfig(config),
-                    });
-
-                    applyConfig(window.elementSdk.config || {});
-               } else {
-                    // 🔥 FALLBACK kalau SDK tidak ada
-                    applyConfig({});
-               }
-          }
-
-          // ================= APPLY CONFIG =================
-          function applyConfig(config) {
-               const c = { ...defaultConfig, ...config };
-
-               document.getElementById("app").style.background = c.background_color;
-               document.getElementById("navbar").style.background = c.primary_color;
-               document.getElementById("hero-section").style.background =
-                    `linear-gradient(135deg,${c.primary_color} 0%,${c.primary_color}cc 100%)`;
-
-               document.getElementById("nav-store-name").textContent = c.store_name;
-               document.getElementById("hero-title").textContent = c.hero_title;
-               document.getElementById("hero-subtitle").textContent = c.hero_subtitle;
-
-               renderProducts();
-               renderTestimonials(); // ✅ FIX UTAMA
-               updateCartUI();
-          }
-
-          // ================= FIX TESTIMONIAL =================
-          function renderTestimonials() {
-               const grid = document.getElementById("testimonials-grid");
-
-               if (!grid) {
-                    console.error("❌ testimonials-grid tidak ditemukan");
-                    return;
-               }
-
-               grid.innerHTML = "";
-
-               testimonials.forEach((t, i) => {
-                    const div = document.createElement("div");
-
-                    div.className = "bg-white border rounded-lg p-5 shadow-sm hover:shadow-lg transition fade-in";
-
-                    div.style.borderColor = "#e8f5e9";
-                    div.style.animationDelay = `${i * 0.1}s`;
-
-                    const stars = "⭐".repeat(t.rating);
-
-                    div.innerHTML = `
-         <div class="flex justify-between mb-2">
+    function renderTestimonials() {
+      const grid = document.getElementById('testimonials-grid');
+      if (!grid) return;
+      grid.innerHTML = testimonials.map(t => {
+        const stars = '⭐'.repeat(t.rating);
+        const timeAgo = getTimeAgo(t.timestamp);
+        return `
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-stone-200 card-hover">
+          <div class="flex items-center justify-between mb-4 pb-4 border-b border-stone-100">
             <div>
-               <p class="font-bold text-sm">${t.name}</p>
-               <p class="text-xs text-gray-500">${t.location}</p>
+              <p class="font-bold text-stone-800 text-sm">${t.name}</p>
+              <p class="text-stone-500 text-xs">${t.address}</p>
             </div>
-            <div class="text-yellow-400">${stars}</div>
-         </div>
+            <div class="text-sm whitespace-nowrap">${stars}</div>
+          </div>
+          <div class="mb-4">
+            <p class="text-xs text-stone-500 font-medium mb-1">Produk :</p>
+            <p class="text-sm font-semibold text-emerald-700">${t.product}</p>
+          </div>
+          <p class="text-stone-700 text-sm mb-4 italic">"${t.text}"</p>
+          <p class="text-stone-400 text-xs">⏱️ ${timeAgo}</p>
+        </div>`;
+      }).join('');
+    }
 
-         <p class="text-xs text-gray-500 mb-2">
-            Produk: <span class="font-semibold text-green-700">${t.product}</span>
-         </p>
+    // ===== RENDER PRODUCTS =====
+    function renderProducts() {
+      const grid = document.getElementById('product-grid');
+      const noRes = document.getElementById('no-results');
+      const filtered = plants.filter(p => {
+        const catMatch = currentCat === 'semua' || p.cat === currentCat;
+        const searchMatch = !searchQuery || p.name.toLowerCase().includes(searchQuery.toLowerCase());
+        return catMatch && searchMatch;
+      });
 
-         <p class="text-sm text-gray-700 mb-3">"${t.text}"</p>
-         <p class="text-xs text-gray-400">${t.date}</p>
-      `;
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noRes.classList.remove('hidden');
+        return;
+      }
+      noRes.classList.add('hidden');
 
-                    grid.appendChild(div);
-               });
+      grid.innerHTML = filtered.map((p, i) => {
+        const inCart = cart.find(c => c.id === p.id);
+        const qty = inCart ? inCart.qty : 0;
+        return `
+        <div onclick="openProductModal(${p.id})" class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 flex flex-col slide-up cursor-pointer" style="animation-delay:${i * 0.05}s">
+          <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-6 flex items-center justify-center text-5xl md:text-6xl aspect-square relative">
+            <span class="drop-shadow-sm">${p.emoji}</span>
+            ${p.bestseller ? `<span class="absolute top-2 right-2 bg-gradient-to-r from-red-500 to-orange-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-md animate-pulse">🔥 Bestseller</span>` : p.stock <= 5 ? `<span class="absolute top-2 right-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Sisa ${p.stock}</span>` : ''}
+          </div>
+          <div class="p-3 flex flex-col flex-1">
+            <h3 class="font-semibold text-sm leading-tight mb-1 line-clamp-2">${p.name}</h3>
+            <p class="text-stone-400 text-[11px] mb-2 line-clamp-2">${p.desc}</p>
+            <div class="mt-auto">
+              <p class="text-emerald-700 font-bold text-base mb-2">${formatPrice(p.price)}</p>
+              <p class="text-stone-500 text-xs">👆 Klik untuk detail</p>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+      lucide.createIcons();
+    }
 
-               if (window.lucide) lucide.createIcons();
-          }
+    // ===== CART LOGIC =====
+    function addToCart(id, qty) {
+      const p = plants.find(x => x.id === id);
+      if (!p) return;
+      const existing = cart.find(c => c.id === id);
+      if (existing) {
+        existing.qty += qty;
+        if (existing.qty > p.stock) existing.qty = p.stock;
+      } else {
+        const addQty = Math.min(qty, p.stock);
+        if (addQty > 0) cart.push({ id, qty: addQty });
+      }
+      updateCartUI();
+      renderProducts();
+      showToast(`${p.name} ditambahkan ke keranjang!`);
+    }
 
-          // ================= INIT =================
-          safeInit();
+    function updateCart(id, delta) {
+      const item = cart.find(c => c.id === id);
+      if (!item) return;
+      const p = plants.find(x => x.id === id);
+      item.qty += delta;
+      if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+      else if (p && item.qty > p.stock) item.qty = p.stock;
+      updateCartUI();
+      renderProducts();
+      renderCartItems();
+    }
 
-          // backup (biar tetap jalan walau ada error lain)
-          renderProducts();
-          renderTestimonials();
+    function removeFromCart(id) {
+      cart = cart.filter(c => c.id !== id);
+      updateCartUI();
+      renderProducts();
+      renderCartItems();
+    }
 
-     </script>
+    function updateCartUI() {
+      const totalItems = cart.reduce((s, c) => s + c.qty, 0);
+      const badge = document.getElementById('cart-count');
+      if (totalItems > 0) {
+        badge.textContent = totalItems;
+        badge.classList.remove('hidden');
+        badge.classList.add('cart-badge');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
 
-</body>
+    function renderCartItems() {
+      const container = document.getElementById('cart-items');
+      const emptyEl = document.getElementById('cart-empty');
+      const footerEl = document.getElementById('cart-footer');
 
+      if (cart.length === 0) {
+        container.innerHTML = '';
+        emptyEl.classList.remove('hidden');
+        footerEl.classList.add('hidden');
+        return;
+      }
+      emptyEl.classList.add('hidden');
+      footerEl.classList.remove('hidden');
+
+      let total = 0;
+      container.innerHTML = cart.map(c => {
+        const p = plants.find(x => x.id === c.id);
+        if (!p) return '';
+        const subtotal = p.price * c.qty;
+        total += subtotal;
+        return `
+        <div class="flex items-center gap-3 bg-stone-50 rounded-xl p-3">
+          <div class="text-3xl">${p.emoji}</div>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-sm truncate">${p.name}</p>
+            <p class="text-emerald-700 font-bold text-sm">${formatPrice(p.price)}</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="updateCart(${p.id},-1)" class="w-7 h-7 flex items-center justify-center bg-white rounded-lg shadow-sm text-red-500 font-bold text-sm hover:bg-red-50 transition">−</button>
+            <span class="font-bold text-sm w-5 text-center">${c.qty}</span>
+            <button onclick="updateCart(${p.id},1)" class="w-7 h-7 flex items-center justify-center bg-white rounded-lg shadow-sm text-emerald-700 font-bold text-sm hover:bg-emerald-50 transition">+</button>
+          </div>
+          <button onclick="removeFromCart(${p.id})" class="p-1 text-stone-400 hover:text-red-500 transition"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+        </div>`;
+      }).join('');
+      document.getElementById('cart-total').textContent = formatPrice(total);
+      lucide.createIcons();
+    }
+
+    // ===== CART PANEL =====
+    function openCart() {
+      const overlay = document.getElementById('cart-overlay');
+      const panel = document.getElementById('cart-panel');
+      overlay.classList.remove('hidden');
+      panel.classList.remove('slide-out-right');
+      panel.classList.add('slide-in-right');
+      renderCartItems();
+    }
+
+    function closeCart() {
+      const panel = document.getElementById('cart-panel');
+      panel.classList.remove('slide-in-right');
+      panel.classList.add('slide-out-right');
+      setTimeout(() => document.getElementById('cart-overlay').classList.add('hidden'), 300);
+    }
+
+    document.getElementById('btn-cart').addEventListener('click', openCart);
+    document.getElementById('btn-close-cart').addEventListener('click', closeCart);
+    document.getElementById('cart-backdrop').addEventListener('click', closeCart);
+    document.getElementById('btn-close-modal').addEventListener('click', closeProductModal);
+    document.getElementById('product-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('product-modal')) closeProductModal();
+    });
+
+    // ===== MODAL QUANTITY =====
+    document.getElementById('btn-qty-minus').addEventListener('click', () => {
+      if (modalQty > 1) {
+        modalQty--;
+        document.getElementById('modal-qty').textContent = modalQty;
+      }
+    });
+    document.getElementById('btn-qty-plus').addEventListener('click', () => {
+      const plant = plants.find(p => p.id === currentPlantId);
+      if (plant && modalQty < plant.stock) {
+        modalQty++;
+        document.getElementById('modal-qty').textContent = modalQty;
+      }
+    });
+
+    // ===== ADD TO CART FROM MODAL =====
+    document.getElementById('btn-add-to-cart-modal').addEventListener('click', () => {
+      if (currentPlantId) {
+        addToCart(currentPlantId, modalQty);
+        closeProductModal();
+      }
+    });
+
+    // ===== WHATSAPP CHECKOUT =====
+    function checkout() {
+      if (cart.length === 0) return;
+      const cfg = window.elementSdk?.config || defaultConfig;
+      let waNumber = cfg.whatsapp_number || defaultConfig.whatsapp_number;
+      if (waNumber.startsWith("0")) {
+        waNumber = "62" + waNumber.substring(1);
+      }
+      let msg = "Halo Admin Toko Bibit 🌱\n\n";
+      msg += "Saya ingin melakukan pemesanan dengan detail berikut:\n\n";
+      msg += "📦 *Pesanan:*\n";
+      let total = 0;
+      cart.forEach(c => {
+        const p = plants.find(pr => pr.id === c.id);
+        const sub = p.price * c.qty;
+        total += sub;
+        msg += `• ${p.name} x${c.qty} = ${formatPrice(sub)}\n`;
+      });
+      msg += `\n*Total: ${formatPrice(total)}*\n\nMohon info ongkir dan rekening pembayaran. Terima kasih! 🌱`;
+      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank");
+    }
+    document.getElementById('btn-checkout').addEventListener('click', checkout);
+
+    // ===== SEARCH =====
+    document.getElementById('btn-search-toggle').addEventListener('click', () => {
+      const bar = document.getElementById('search-bar');
+      bar.classList.toggle('hidden');
+      if (!bar.classList.contains('hidden')) document.getElementById('search-input').focus();
+    });
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderProducts();
+    });
+
+    // ===== CATEGORY TABS =====
+    document.querySelectorAll('.cat-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        currentCat = tab.dataset.cat;
+        document.querySelectorAll('.cat-tab').forEach(t => {
+          t.className = 'cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition';
+        });
+        tab.className = 'cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-semibold bg-emerald-700 text-white transition';
+        renderProducts();
+      });
+    });
+
+    // ===== ELEMENT SDK =====
+    const defaultConfig = {
+      store_name: 'Toko Bibit Tanaman',
+      tagline: 'Hijau di Rumah, Sejuk di Hati',
+      whatsapp_number: '085648139460',
+      background_color: '#fafaf9',
+      header_color: '#065f46',
+      text_color: '#292524',
+      accent_color: '#fbbf24',
+      surface_color: '#ffffff',
+      font_family: 'Poppins',
+      font_size: 14
+    };
+
+    function applyConfig(config) {
+      const storeName = config.store_name || defaultConfig.store_name;
+      const tagline = config.tagline || defaultConfig.tagline;
+      waNumber = config.whatsapp_number || defaultConfig.whatsapp_number;
+      const bg = config.background_color || defaultConfig.background_color;
+      const hdr = config.header_color || defaultConfig.header_color;
+      const txt = config.text_color || defaultConfig.text_color;
+      const accent = config.accent_color || defaultConfig.accent_color;
+      const surface = config.surface_color || defaultConfig.surface_color;
+      const font = config.font_family || defaultConfig.font_family;
+      const sz = config.font_size || defaultConfig.font_size;
+
+      document.getElementById('el-store-name').textContent = storeName;
+      document.getElementById('el-tagline').textContent = tagline;
+      document.getElementById('el-footer-name').textContent = storeName;
+      document.body.style.backgroundColor = bg;
+      document.body.style.color = txt;
+      document.body.style.fontFamily = `${font}, Poppins, sans-serif`;
+      document.body.style.fontSize = `${sz}px`;
+
+      const header = document.getElementById('header');
+      header.style.backgroundColor = hdr;
+
+      document.querySelectorAll('.cat-tab').forEach(t => {
+        if (t.dataset.cat === currentCat) t.style.backgroundColor = hdr;
+      });
+
+      document.querySelectorAll('h3, .text-emerald-700').forEach(el => {
+        if (el.closest('#cart-panel')) return;
+        el.style.fontSize = `${sz}px`;
+      });
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => { applyConfig(config); },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+            { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+            { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+            { get: () => config.header_color || defaultConfig.header_color, set: (v) => { config.header_color = v; window.elementSdk.setConfig({ header_color: v }); } },
+            { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
+          ],
+          borderables: [],
+          fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+          fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } },
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['store_name', config.store_name || defaultConfig.store_name],
+          ['tagline', config.tagline || defaultConfig.tagline],
+          ['whatsapp_number', config.whatsapp_number || defaultConfig.whatsapp_number],
+        ])
+      });
+    }
+
+    // ===== INIT =====
+    renderProducts();
+    renderTestimonials();
+    setInterval(renderTestimonials, 60000); // Update setiap 1 menit untuk waktu realtime
+    lucide.createIcons();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f0c589d46d64e3c',t:'MTc3Njk0MTgzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
