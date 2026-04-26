@@ -257,15 +257,15 @@
           class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-semibold bg-emerald-700 text-white transition">Semua</button>
         <button data-cat="buah"
           class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🍎
-          Buah</button> <button data-cat="hias"
+          Buah</button> <button data-cat="indoor"
+          class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🏠
+          Indoor</button><button data-cat="hias"
           class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🌸
           Hias</button> <button data-cat="sayur"
           class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🥬
           Sayur</button> <button data-cat="herbal"
           class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🌿
-          Herbal</button> <button data-cat="indoor"
-          class="cat-tab whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium bg-stone-100 text-stone-600 hover:bg-emerald-50 transition">🏠
-          Indoor</button>
+          Herbal</button>
       </div>
     </nav><!-- Products Section Intro -->
     <section class="bg-gradient-to-r from-emerald-600 to-teal-600 border-b border-emerald-700">
@@ -429,12 +429,12 @@
     const plants = [
       {
         id: 1,
-        name: "Bibit Mangga Harum Manis",
-        cat: "buah",
-        price: 45000,
-        emoji: "🥭",
-        desc: "Berbuah dalam 2-3 tahun, rasa manis legit",
-        fullDesc: "Bibit mangga harum manis berkualitas premium dari pohon induk pilihan...",
+        name: "Palem Merah",
+        cat: "indoor",
+        price: 100000,
+        emoji: "🌴",
+        desc: "Daun hijau dengan batang merah, cocok untuk menghiasi taman milik Anda",
+        fullDesc: "Palem Merah (Maranta Red) dengan daun hijau lebar dan batang merah mencolok. Tanaman hias yang sempurna untuk mempercantik sudut rumah atau kantor Anda. Tahan terhadap berbagai kondisi cahaya, ideal untuk indoor.",
         images: [
           {
             type: 'image',
@@ -445,19 +445,19 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "2-3 tahun", tinggi: "40-60cm", perawatan: "Mudah" },
-        stock: 15,
+        specs: { umur: "3-5 tahun", tinggi: "1,5 m - 3 m", perawatan: "Mudah" },
+        stock: 200,
         bestseller: true
       },
 
       {
         id: 2,
-        name: "Bibit Durian Musang King",
-        cat: "buah",
-        price: 120000,
-        emoji: "🍈",
-        desc: "Varietas premium asal Malaysia",
-        fullDesc: "Durian Musang King terkenal dengan daging yang lembut dan rasa yang creamy. Bibit hasil sambung dengan tingkat keberhasilan tinggi. Proses aklimatisasi sudah sempurna.",
+        name: "Palem Qul / Kipas",
+        cat: "indoor",
+        price: 15000,
+        emoji: "🌿",
+        desc: "Daun berbentuk kipas, tahan naungan, cocok untuk dekorasi rumah",
+        fullDesc: "Palem Qul / Kipas (Chamaedorea Elegans) dengan daun berbentuk kipas dan batang yang kokoh. Tanaman hias yang sempurna untuk mempercantik sudut rumah atau kantor Anda. Tahan terhadap berbagai kondisi cahaya, ideal untuk indoor.",
         images: [
           {
             type: 'image',
@@ -468,19 +468,19 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "4-5 tahun", tinggi: "50-70cm", perawatan: "Sedang" },
-        stock: 8,
+        specs: { umur: "2-3 tahun", tinggi: "50 cm - 1 m", perawatan: "Mudah" },
+        stock: 1500,
         bestseller: true
       },
 
       {
         id: 3,
-        name: "Bibit Alpukat Mentega",
-        cat: "buah",
-        price: 55000,
-        emoji: "🥑",
-        desc: "Daging buah tebal & lembut",
-        fullDesc: "Alpukat Mentega memiliki daging buah yang tebal dan lembut, dengan rasa yang kaya dan manis. Bibit berkualitas tinggi dengan proses aklimatisasi yang sudah sempurna.",
+        name: "Palem Qul / Kipas",
+        cat: "indoor",
+        price: 7000,
+        emoji: "🌿",
+        desc: "Daun berbentuk kipas, tahan naungan, cocok untuk dekorasi rumah",
+        fullDesc: "Palem Qul / Kipas (Chamaedorea Elegans) dengan daun berbentuk kipas dan batang yang kokoh. Tanaman hias yang sempurna untuk mempercantik sudut rumah atau kantor Anda. Tahan terhadap berbagai kondisi cahaya, ideal untuk indoor.",
         images: [
           {
             type: 'image',
@@ -491,19 +491,19 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "3-4 tahun", tinggi: "45-60cm", perawatan: "Mudah" },
-        stock: 20,
+        specs: { umur: "2-3 tahun", tinggi: "30-50 cm", perawatan: "Mudah" },
+        stock: 2000,
         bestseller: false
       },
 
       {
         id: 4,
-        name: "Bibit Jeruk Dekopon",
+        name: "Dukuh Sambung",
         cat: "buah",
-        price: 65000,
-        emoji: "🍊",
-        desc: "Jeruk Jepang tanpa biji, super manis",
-        fullDesc: "Jeruk Dekopon dari Jepang dengan rasa super manis dan tanpa biji. Cocok untuk cemilan sehat keluarga. Hasil sambung dengan sertifikat keaslian.",
+        price: 15000,
+        emoji: "🫒",
+        desc: "Dukuh sambung dengan buah yang lezat, cocok untuk kebun rumah Anda",
+        fullDesc: "Dukuh Sambung memiliki buah yang lezat dan manis. Bibit berkualitas tinggi dengan proses aklimatisasi yang sudah sempurna.",
         images: [
           {
             type: 'image',
@@ -514,18 +514,19 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "2-3 tahun", tinggi: "40-55cm", perawatan: "Mudah" },
-        stock: 12,
+        specs: { umur: "1-2 tahun", tinggi: "40-60 cm", perawatan: "Mudah" },
+        stock: 100,
         bestseller: false
       },
+
       {
         id: 5,
-        name: "Monstera Deliciosa",
-        cat: "hias",
-        price: 85000,
-        emoji: "🌿",
-        desc: "Daun ikonik berlubang, cocok indoor",
-        fullDesc: "Monstera dengan daun besar berlubang yang indah. Cocok untuk dekorasi interior rumah atau kantor. Tahan dalam kondisi cahaya rendah dan mudah dirawat.",
+        name: "Kopi Sambung Robusta",
+        cat: "buah",
+        price: 10000,
+        emoji: "🫘",
+        desc: "Kopi Robusta dengan rasa khas, cocok untuk cemilan sehat",
+        fullDesc: "Kopi Sambung Robusta dengan rasa khas dan aroma yang kuat. Cocok untuk cemilan sehat keluarga. Hasil sambung dengan proses aklimatisasi yang sudah sempurna, siap tumbuh dan berbuah di halaman rumah Anda.",
         images: [
           {
             type: 'image',
@@ -536,18 +537,18 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "Matang", tinggi: "30-50cm", perawatan: "Sangat Mudah" },
-        stock: 10,
+        specs: { umur: "1-2 tahun", tinggi: "60-80 cm", perawatan: "Sedang" },
+        stock: 500,
         bestseller: true
       },
       {
         id: 6,
-        name: "Anggrek Bulan Putih",
-        cat: "hias",
-        price: 95000,
-        emoji: "🌸",
-        desc: "Bunga elegan tahan lama",
-        fullDesc: "Anggrek bulan dengan bunga putih bersih yang elegan. Tahan mekar hingga 3 bulan. Cocok untuk hadiah atau dekorasi istimewa.",
+        name: "Kopi Sambung Arabika",
+        cat: "buah",
+        price: 10000,
+        emoji: "🫘",
+        desc: "Kopi Arabika dengan cita rasa halus, cocok untuk penikmat kopi sejati",
+        fullDesc: "Kopi Sambung Arabika dengan cita rasa halus dan aroma yang nikmat. Cocok untuk penikmat kopi sejati. Hasil sambung dengan proses aklimatisasi yang sudah sempurna, siap tumbuh dan berbuah di halaman rumah Anda.",
         images: [
           {
             type: 'image',
@@ -558,18 +559,18 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "Siap Mekar", tinggi: "Sesuai Pot", perawatan: "Sedang" },
-        stock: 7,
+        specs: { umur: "1-2 tahun", tinggi: "60-80 cm", perawatan: "Sedang" },
+        stock: 70,
         bestseller: false
       },
       {
         id: 7,
-        name: "Bougenville Pink",
-        cat: "hias",
-        price: 35000,
-        emoji: "🌺",
-        desc: "Berbunga sepanjang tahun",
-        fullDesc: "Bunga Bougenville pink yang cantik dan berbunga sepanjang tahun. Tanaman keras yang tahan panas dan kering. Cocok untuk taman minimalis.",
+        name: "Kopi Selip Robusta",
+        cat: "buah",
+        price: 5000,
+        emoji: "🫘",
+        desc: "Kopi Selip Robusta dengan rasa kuat, cocok untuk pecinta kopi yang suka tantangan",
+        fullDesc: "Kopi Selip Robusta dengan rasa kuat dan aroma yang khas. Cocok untuk pecinta kopi yang suka tantangan. Hasil sambung dengan proses aklimatisasi yang sudah sempurna, siap tumbuh dan berbuah di halaman rumah Anda.",
         images: [
           {
             type: 'image',
@@ -580,18 +581,18 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "Matang", tinggi: "30-40cm", perawatan: "Mudah" },
-        stock: 25,
-        bestseller: false
+        specs: { umur: "0,5-1 tahun", tinggi: "40-60 cm", perawatan: "Sedang" },
+        stock: 200000,
+        bestseller: true
       },
       {
         id: 8,
-        name: "Bibit Tomat Cherry",
-        cat: "sayur",
-        price: 15000,
-        emoji: "🍅",
-        desc: "Panen cepat 60 hari, buah melimpah",
-        fullDesc: "Tomat cherry yang berbuah deras dalam 60 hari. Cocok ditanam di pot atau polybag. Rasa manis dan cocok untuk cemilan atau salad.",
+        name: "Kopi Selip Arabika",
+        cat: "buah",
+        price: 5000,
+        emoji: "🫘",
+        desc: "Kopi Arabika dengan cita rasa halus, cocok untuk penikmat kopi sejati",
+        fullDesc: "Kopi Sambung Arabika dengan cita rasa halus dan aroma yang nikmat. Cocok untuk penikmat kopi sejati. Hasil sambung dengan proses aklimatisasi yang sudah sempurna, siap tumbuh dan berbuah di halaman rumah Anda.",
         images: [
           {
             type: 'image',
@@ -602,40 +603,40 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "60 hari", tinggi: "50-80cm", perawatan: "Mudah" },
+        specs: { umur: "0,5-1 tahun", tinggi: "15-30 cm", perawatan: "Sedang" },
+        stock: 500000,
+        bestseller: false
+      },
+      {
+        id: 9,
+        name: "Manggis Sambung",
+        cat: "buah",
+        price: 15000,
+        emoji: "🍈",
+        desc: "Manggis sambung dengan buah manis, cocok untuk kebun rumah Anda",
+        fullDesc: "Manggis Sambung dengan buah yang manis dan lezat. Bibit sambung berkualitas tinggi dengan proses aklimatisasi yang sudah sempurna, siap tumbuh dan berbuah di halaman rumah Anda.",
+        images: [
+          {
+            type: 'image',
+            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
+          },
+          {
+            type: 'image',
+            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
+          }
+        ],
+        specs: { umur: "0,5-1 tahun", tinggi: "50-80cm", perawatan: "Mudah" },
         stock: 30,
         bestseller: true
       },
       {
-        id: 9,
-        name: "Bibit Cabai Rawit",
-        cat: "sayur",
-        price: 12000,
-        emoji: "🌶️",
-        desc: "Super pedas, produktif tinggi",
-        fullDesc: "Cabai rawit super pedas dengan produktivitas tinggi. Bisa panen hingga 6-8 bulan berturut-turut. Cocok untuk bumbu dapur atau usaha.",
-        images: [
-          {
-            type: 'image',
-            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
-          },
-          {
-            type: 'image',
-            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
-          }
-        ],
-        specs: { umur: "70 hari", tinggi: "60-100cm", perawatan: "Mudah" },
-        stock: 35,
-        bestseller: false
-      },
-      {
         id: 10,
-        name: "Bibit Kangkung Organik",
-        cat: "sayur",
-        price: 8000,
-        emoji: "🥬",
-        desc: "Siap panen dalam 25 hari",
-        fullDesc: "Kangkung organik tanpa pestisida berbahaya. Siap panen dalam 25 hari. Cocok untuk sayur sehat keluarga.",
+        name: "Aren",
+        cat: "indoor",
+        price: 15000,
+        emoji: "🌴",
+        desc: "Aren dengan daun hijau lebar dan batang yang kokoh, cocok untuk dekorasi rumah",
+        fullDesc: "Aren dengan daun hijau lebar dan batang yang kokoh, cocok untuk dekorasi rumah. Tanaman ini tahan terhadap berbagai kondisi cuaca, ideal untuk indoor maupun outdoor. Bibit berkualitas tinggi dengan proses aklimatisasi yang sudah sempurna, siap tumbuh di halaman rumah Anda.",
         images: [
           {
             type: 'image',
@@ -646,18 +647,18 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "25 hari", tinggi: "20-30cm", perawatan: "Sangat Mudah" },
-        stock: 40,
-        bestseller: false
+        specs: { umur: "2-3 tahun", tinggi: "50-75 cm", perawatan: "Sedang" },
+        stock: 150,
+        bestseller: true
       },
       {
         id: 11,
-        name: "Bibit Lavender",
-        cat: "herbal",
-        price: 30000,
-        emoji: "💜",
-        desc: "Aromaterapi alami, bunga cantik",
-        fullDesc: "Lavender dengan aroma menenangkan dan bunga ungu yang cantik. Cocok untuk taman herbal atau sebagai tanaman hias. Tahan terhadap berbagai kondisi cuaca.",
+        name: "Aren",
+        cat: "indoor",
+        price: 5000,
+        emoji: "🌴",
+        desc: "Aren dengan daun hijau lebar dan batang yang kokoh, cocok untuk dekorasi rumah",
+        fullDesc: "Aren dengan daun hijau lebar dan batang yang kokoh, cocok untuk dekorasi rumah. Tanaman ini tahan terhadap berbagai kondisi cuaca, ideal untuk indoor maupun outdoor. Bibit berkualitas tinggi dengan proses aklimatisasi yang sudah sempurna, siap tumbuh di halaman rumah Anda.",
         images: [
           {
             type: 'image',
@@ -668,18 +669,18 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "Matang", tinggi: "30-40cm", perawatan: "Mudah" },
-        stock: 18,
-        bestseller: false
+        specs: { umur: "0,5-1 tahun", tinggi: "20-30 cm", perawatan: "Sedang" },
+        stock: 1000,
+        bestseller: true
       },
       {
         id: 12,
-        name: "Bibit Rosemary",
-        cat: "herbal",
-        price: 25000,
-        emoji: "🌿",
-        desc: "Herbal serbaguna, aroma khas",
-        fullDesc: "Rosemary dengan aroma khas yang kuat. Cocok untuk masakan, teh herbal, atau sebagai tanaman hias. Tahan terhadap kekeringan dan mudah dirawat.",
+        name: "Bunga Tabubuya Kuning",
+        cat: "hias",
+        price: 15000,
+        emoji: "🌼",
+        desc: "Tabubuya kuning dengan bunga cerah, cocok untuk taman rumah Anda",
+        fullDesc: "Tabubuya kuning dengan bunga cerah, cocok untuk taman rumah Anda. Bunga yang indah dan tahan lama, ideal untuk mempercantik halaman rumah Anda. Bibit berkualitas tinggi dengan proses aklimatisasi yang sudah sempurna, siap tumbuh di halaman rumah Anda.",
         images: [
           {
             type: 'image',
@@ -690,62 +691,18 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "Matang", tinggi: "30-50cm", perawatan: "Mudah" },
-        stock: 22,
+        specs: { umur: "2,5-3 tahun", tinggi: "1-1,5 m", perawatan: "Sedang" },
+        stock: 100,
         bestseller: false
       },
       {
         id: 13,
-        name: "Bibit Mint",
-        cat: "herbal",
-        price: 15000,
-        emoji: "🌱",
-        desc: "Segar untuk teh dan masakan",
-        fullDesc: "Mint dengan aroma segar yang menyegarkan. Cocok untuk teh, masakan, atau sebagai tanaman hias. Tumbuh subur di berbagai kondisi dan mudah dirawat.",
-        images: [
-          {
-            type: 'image',
-            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
-          },
-          {
-            type: 'image',
-            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
-          }
-        ],
-        specs: { umur: "Matang", tinggi: "20-30cm", perawatan: "Sangat Mudah" },
-        stock: 30,
-        bestseller: false
-      },
-      {
-        id: 14,
-        name: "Mawar Merah",
-        cat: "indoor",
-        price: 20000,
-        emoji: "🌹",
-        desc: "Bunga indah untuk dekorasi",
-        fullDesc: "Mawar merah dengan warna yang cerah dan aroma yang harum. Cocok untuk dekorasi rumah, hadiah, atau sebagai tanaman hias. Tumbuh subur di tempat yang hangat dan cerah.",
-        images: [
-          {
-            type: 'image',
-            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
-          },
-          {
-            type: 'image',
-            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
-          }
-        ],
-        specs: { umur: "Muda", tinggi: "10-30cm", perawatan: "Mudah" },
-        stock: 28,
-        bestseller: true
-      },
-      {
-        id: 15,
-        name: "Melati Putih",
-        cat: "indoor",
-        price: 18000,
+        name: "Bunga Tabubuya Kuning",
+        cat: "hias",
+        price: 50000,
         emoji: "🌼",
-        desc: "Bunga melati dengan aroma yang menenangkan",
-        fullDesc: "Melati putih dengan bunga kecil yang cantik dan aroma yang menenangkan. Cocok untuk dekorasi rumah atau sebagai tanaman hias. Tumbuh subur di tempat yang hangat dan cerah.",
+        desc: "Tabubuya kuning dengan bunga cerah, cocok untuk taman rumah Anda",
+        fullDesc: "Tabubuya kuning dengan bunga cerah, cocok untuk taman rumah Anda. Bunga yang indah dan tahan lama, ideal untuk mempercantik halaman rumah Anda. Bibit berkualitas tinggi dengan proses aklimatisasi yang sudah sempurna, siap tumbuh di halaman rumah Anda.",
         images: [
           {
             type: 'image',
@@ -756,49 +713,27 @@
             url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
           }
         ],
-        specs: { umur: "Muda", tinggi: "10-20cm", perawatan: "Mudah" },
-        stock: 25,
-        bestseller: false
-      },
-      {
-        id: 16,
-        name: "Bougenville Pink",
-        cat: "indoor",
-        price: 22000,
-        emoji: "🌺",
-        desc: "Bunga indah dengan warna pink",
-        fullDesc: "Bougenville Pink dengan bunga yang indah dan warna pink yang cerah. Cocok untuk dekorasi rumah atau sebagai tanaman hias. Tumbuh subur di tempat yang hangat dan cerah.",
-        images: [
-          {
-            type: 'image',
-            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
-          },
-          {
-            type: 'image',
-            url: 'https://lh3.googleusercontent.com/d/1YWfvqAzqFybYlVaVVmKdrFkwg32tW7nt=w1000'
-          }
-        ],
-        specs: { umur: "Muda", tinggi: "10-20cm", perawatan: "Mudah" },
-        stock: 20,
+        specs: { umur: "2,5-3 tahun", tinggi: "2-3 m", perawatan: "Sedang" },
+        stock: 15,
         bestseller: false
       }
     ];
 
-      // { id: 2, name: "Bibit Durian Musang King", cat: "buah", price: 120000, emoji: "🍈", desc: "Varietas premium asal Malaysia", fullDesc: "Durian Musang King terkenal dengan daging yang lembut dan rasa yang creamy. Bibit hasil sambung dengan tingkat keberhasilan tinggi. Proses aklimatisasi sudah sempurna.", images: ["🍈", "🍈", "🍈"], specs: { umur: "4-5 tahun", tinggi: "50-70cm", perawatan: "Sedang" }, stock: 8, bestseller: true },
-      // { id: 3, name: "Bibit Alpukat Mentega", cat: "buah", price: 55000, emoji: "🥑", desc: "Daging buah tebal & lembut", fullDesc: "Alpukat mentega dengan daging buah yang tebal, lembut, dan berasa premium. Bibit hasil sambung langsung dari kebun terpercaya. Tahan terhadap hama dan penyakit.", images: ["🥑", "🥑", "🥑"], specs: { umur: "3-4 tahun", tinggi: "45-60cm", perawatan: "Mudah" }, stock: 20 },
-      // { id: 4, name: "Bibit Jeruk Dekopon", cat: "buah", price: 65000, emoji: "🍊", desc: "Jeruk Jepang tanpa biji, super manis", fullDesc: "Jeruk Dekopon dari Jepang dengan rasa super manis dan tanpa biji. Cocok untuk cemilan sehat keluarga. Hasil sambung dengan sertifikat keaslian.", images: ["🍊", "🍊", "🍊"], specs: { umur： "2-3 tahun", tinggi: "40-55cm", perawatan: "Mudah" }, stock: 12 },
-      // { id: 5, name: "Monstera Deliciosa", cat: "hias", price： 85000, emoji: "🌿", desc: "Daun ikonik berlubang, cocok indoor", fullDesc": "Monstera dengan daun besar berlubang yang indah. Cocok untuk dekorasi interior rumah atau kantor. Tahan dalam kondisi cahaya rendah dan mudah dirawat.", images": ["🌿", "🌿", "🌿"], specs": { umur": "Matang", tinggi": "30-50cm", perawatan": "Sangat Mudah" }, stock": 10, bestseller": true },
-      // { id: 6, name: "Anggrek Bulan Putih", cat: "hias", price: 95000, emoji: "🌸", desc: "Bunga elegan tahan lama", fullDesc: "Anggrek bulan dengan bunga putih bersih yang elegan. Tahan mekar hingga 3 bulan. Cocok untuk hadiah atau dekorasi istimewa.", images: ["🌸", "🌸", "🌸"], specs: { umur: "Siap Mekar", tinggi: "Sesuai Pot", perawatan: "Sedang" }, stock: 7 },
-      // { id: 7, name: "Bougenville Pink", cat: "hias", price: 35000, emoji: "🌺", desc: "Berbunga sepanjang tahun", fullDesc: "Bunga Bougenville pink yang cantik dan berbunga sepanjang tahun. Tanaman keras yang tahan panas dan kering. Cocok untuk taman minimalis.", images: ["🌺", "🌺", "🌺"], specs: { umur: "Matang", tinggi: "30-40cm", perawatan: "Mudah" }, stock: 25 },
-      // { id: 8, name: "Bibit Tomat Cherry", cat: "sayur", price: 15000, emoji: "🍅", desc: "Panen cepat 60 hari, buah melimpah", fullDesc: "Tomat cherry yang berbuah deras dalam 60 hari. Cocok ditanam di pot atau polybag. Rasa manis dan cocok untuk cemilan atau salad.", images: ["🍅", "🍅", "🍅"], specs: { umur: "60 hari", tinggi: "50-80cm", perawatan: "Mudah" }, stock: 30, bestseller: true },
-      // { id: 9, name: "Bibit Cabai Rawit", cat: "sayur", price: 12000, emoji: "🌶️", desc: "Super pedas, produktif tinggi", fullDesc: "Cabai rawit super pedas dengan produktivitas tinggi. Bisa panen hingga 6-8 bulan berturut-turut. Cocok untuk bumbu dapur atau usaha.", images: ["🌶️", "🌶️", "🌶️"], specs: { umur: "70 hari", tinggi: "60-100cm", perawatan: "Mudah" }, stock: 35 },
-      // { id: 10, name: "Bibit Kangkung Organik", cat: "sayur", price: 8000, emoji: "🥬", desc: "Siap panen dalam 25 hari", fullDesc: "Kangkung organik tanpa pestisida berbahaya. Siap panen dalam 25 hari. Cocok untuk sayur sehat keluarga atau dijual kembali.", images: ["🥬", "🥬", "🥬"], specs: { umur: "25 hari", tinggi: "30-40cm", perawatan: "Sangat Mudah" }, stock: 50 },
-      // { id: 11, name: "Bibit Jahe Merah", cat: "herbal", price: 25000, emoji: "🫚", desc: "Khasiat tinggi untuk kesehatan", fullDesc: "Jahe merah berkhasiat tinggi untuk kesehatan. Cocok untuk minuman sehat atau olahan herbal. Bibit berkualitas dari kebun terpilih.", images: ["🫚", "🫚", "🫚"], specs: { umur: "8-10 bulan", tinggi: "Rimpang", perawatan: "Mudah" }, stock: 18, bestseller: true },
-      // { id: 12, name: "Bibit Kunyit Organik", cat: "herbal", price: 20000, emoji: "✨", desc: "Anti-inflamasi alami", fullDesc: "Kunyit organik dengan kandungan kurkumin tinggi. Anti-inflamasi alami untuk kesehatan. Cocok untuk jamu tradisional atau olahan herbal.", images: ["✨", "✨", "✨"], specs: { umur: "8-9 bulan", tinggi: "Rimpang", perawatan: "Mudah" }, stock: 22 },
-      // { id: 13, name: "Bibit Lidah Buaya", cat: "herbal", price: 18000, emoji: "🪴", desc: "Multifungsi: kecantikan & kesehatan", fullDesc: "Lidah buaya dengan manfaat multifungsi untuk kecantikan dan kesehatan. Cocok untuk maskaran atau minuman herbal. Sangat mudah dirawat.", images: ["🪴", "🪴", "🪴"], specs: { umur: "Matang", tinggi: "30-50cm", perawatan: "Sangat Mudah" }, stock: 28 },
-      // { id: 14, name: "Sansevieria (Lidah Mertua)", cat: "indoor", price: 40000, emoji: "🌱", desc: "Pembersih udara terbaik, minim perawatan", fullDesc: "Sansevieria pembersih udara terbaik yang tidak perlu perawatan rumit. Cocok untuk rumah atau kantor. Tahan dalam kondisi cahaya rendah.", images: ["🌱", "🌱", "🌱"], specs: { umur: "Matang", tinggi: "60-80cm", perawatan: "Sangat Mudah" }, stock: 16 },
-      // { id: 15, name: "Pothos Golden", cat: "indoor", price: 30000, emoji: "💚", desc: "Tanaman rambat cantik, sangat mudah", fullDesc: "Pothos golden dengan daun hijau keemasan yang indah. Tanaman rambat cocok untuk gantung atau merambat. Sangat mudah dirawat dan cepat tumbuh.", images: ["💚", "💚", "💚"], specs: { umur: "Matang", tinggi: "Rambat", perawatan: "Sangat Mudah" }, stock: 20 },
-      // { id: 16, name: "Kaktus Mini Set (3pcs)", cat: "indoor", price: 50000, emoji: "🌵", desc: "Set dekorasi meja kerja", fullDesc: "Set 3 kaktus mini unik untuk dekorasi meja kerja atau ruang tamu. Cocok untuk hadiah atau koleksi pribadi. Tahan lama dan tidak perlu sering disiram.", images: ["🌵", "🌵", "🌵"], specs: { umur: "Matang", tinggi: "10-15cm", perawatan: "Sangat Mudah" }, stock: 14 },
+    // { id: 2, name: "Bibit Durian Musang King", cat: "buah", price: 120000, emoji: "🍈", desc: "Varietas premium asal Malaysia", fullDesc: "Durian Musang King terkenal dengan daging yang lembut dan rasa yang creamy. Bibit hasil sambung dengan tingkat keberhasilan tinggi. Proses aklimatisasi sudah sempurna.", images: ["🍈", "🍈", "🍈"], specs: { umur: "4-5 tahun", tinggi: "50-70cm", perawatan: "Sedang" }, stock: 8, bestseller: true },
+    // { id: 3, name: "Bibit Alpukat Mentega", cat: "buah", price: 55000, emoji: "🥑", desc: "Daging buah tebal & lembut", fullDesc: "Alpukat mentega dengan daging buah yang tebal, lembut, dan berasa premium. Bibit hasil sambung langsung dari kebun terpercaya. Tahan terhadap hama dan penyakit.", images: ["🥑", "🥑", "🥑"], specs: { umur: "3-4 tahun", tinggi: "45-60cm", perawatan: "Mudah" }, stock: 20 },
+    // { id: 4, name: "Bibit Jeruk Dekopon", cat: "buah", price: 65000, emoji: "🍊", desc: "Jeruk Jepang tanpa biji, super manis", fullDesc: "Jeruk Dekopon dari Jepang dengan rasa super manis dan tanpa biji. Cocok untuk cemilan sehat keluarga. Hasil sambung dengan sertifikat keaslian.", images: ["🍊", "🍊", "🍊"], specs: { umur： "2-3 tahun", tinggi: "40-55cm", perawatan: "Mudah" }, stock: 12 },
+    // { id: 5, name: "Monstera Deliciosa", cat: "hias", price： 85000, emoji: "🌿", desc: "Daun ikonik berlubang, cocok indoor", fullDesc": "Monstera dengan daun besar berlubang yang indah. Cocok untuk dekorasi interior rumah atau kantor. Tahan dalam kondisi cahaya rendah dan mudah dirawat.", images": ["🌿", "🌿", "🌿"], specs": { umur": "Matang", tinggi": "30-50cm", perawatan": "Sangat Mudah" }, stock": 10, bestseller": true },
+    // { id: 6, name: "Anggrek Bulan Putih", cat: "hias", price: 95000, emoji: "🌸", desc: "Bunga elegan tahan lama", fullDesc: "Anggrek bulan dengan bunga putih bersih yang elegan. Tahan mekar hingga 3 bulan. Cocok untuk hadiah atau dekorasi istimewa.", images: ["🌸", "🌸", "🌸"], specs: { umur: "Siap Mekar", tinggi: "Sesuai Pot", perawatan: "Sedang" }, stock: 7 },
+    // { id: 7, name: "Bougenville Pink", cat: "hias", price: 35000, emoji: "🌺", desc: "Berbunga sepanjang tahun", fullDesc: "Bunga Bougenville pink yang cantik dan berbunga sepanjang tahun. Tanaman keras yang tahan panas dan kering. Cocok untuk taman minimalis.", images: ["🌺", "🌺", "🌺"], specs: { umur: "Matang", tinggi: "30-40cm", perawatan: "Mudah" }, stock: 25 },
+    // { id: 8, name: "Bibit Tomat Cherry", cat: "sayur", price: 15000, emoji: "🍅", desc: "Panen cepat 60 hari, buah melimpah", fullDesc: "Tomat cherry yang berbuah deras dalam 60 hari. Cocok ditanam di pot atau polybag. Rasa manis dan cocok untuk cemilan atau salad.", images: ["🍅", "🍅", "🍅"], specs: { umur: "60 hari", tinggi: "50-80cm", perawatan: "Mudah" }, stock: 30, bestseller: true },
+    // { id: 9, name: "Bibit Cabai Rawit", cat: "sayur", price: 12000, emoji: "🌶️", desc: "Super pedas, produktif tinggi", fullDesc: "Cabai rawit super pedas dengan produktivitas tinggi. Bisa panen hingga 6-8 bulan berturut-turut. Cocok untuk bumbu dapur atau usaha.", images: ["🌶️", "🌶️", "🌶️"], specs: { umur: "70 hari", tinggi: "60-100cm", perawatan: "Mudah" }, stock: 35 },
+    // { id: 10, name: "Bibit Kangkung Organik", cat: "sayur", price: 8000, emoji: "🥬", desc: "Siap panen dalam 25 hari", fullDesc: "Kangkung organik tanpa pestisida berbahaya. Siap panen dalam 25 hari. Cocok untuk sayur sehat keluarga atau dijual kembali.", images: ["🥬", "🥬", "🥬"], specs: { umur: "25 hari", tinggi: "30-40cm", perawatan: "Sangat Mudah" }, stock: 50 },
+    // { id: 11, name: "Bibit Jahe Merah", cat: "herbal", price: 25000, emoji: "🫚", desc: "Khasiat tinggi untuk kesehatan", fullDesc: "Jahe merah berkhasiat tinggi untuk kesehatan. Cocok untuk minuman sehat atau olahan herbal. Bibit berkualitas dari kebun terpilih.", images: ["🫚", "🫚", "🫚"], specs: { umur: "8-10 bulan", tinggi: "Rimpang", perawatan: "Mudah" }, stock: 18, bestseller: true },
+    // { id: 12, name: "Bibit Kunyit Organik", cat: "herbal", price: 20000, emoji: "✨", desc: "Anti-inflamasi alami", fullDesc: "Kunyit organik dengan kandungan kurkumin tinggi. Anti-inflamasi alami untuk kesehatan. Cocok untuk jamu tradisional atau olahan herbal.", images: ["✨", "✨", "✨"], specs: { umur: "8-9 bulan", tinggi: "Rimpang", perawatan: "Mudah" }, stock: 22 },
+    // { id: 13, name: "Bibit Lidah Buaya", cat: "herbal", price: 18000, emoji: "🪴", desc: "Multifungsi: kecantikan & kesehatan", fullDesc: "Lidah buaya dengan manfaat multifungsi untuk kecantikan dan kesehatan. Cocok untuk maskaran atau minuman herbal. Sangat mudah dirawat.", images: ["🪴", "🪴", "🪴"], specs: { umur: "Matang", tinggi: "30-50cm", perawatan: "Sangat Mudah" }, stock: 28 },
+    // { id: 14, name: "Sansevieria (Lidah Mertua)", cat: "indoor", price: 40000, emoji: "🌱", desc: "Pembersih udara terbaik, minim perawatan", fullDesc: "Sansevieria pembersih udara terbaik yang tidak perlu perawatan rumit. Cocok untuk rumah atau kantor. Tahan dalam kondisi cahaya rendah.", images: ["🌱", "🌱", "🌱"], specs: { umur: "Matang", tinggi: "60-80cm", perawatan: "Sangat Mudah" }, stock: 16 },
+    // { id: 15, name: "Pothos Golden", cat: "indoor", price: 30000, emoji: "💚", desc: "Tanaman rambat cantik, sangat mudah", fullDesc: "Pothos golden dengan daun hijau keemasan yang indah. Tanaman rambat cocok untuk gantung atau merambat. Sangat mudah dirawat dan cepat tumbuh.", images: ["💚", "💚", "💚"], specs: { umur: "Matang", tinggi: "Rambat", perawatan: "Sangat Mudah" }, stock: 20 },
+    // { id: 16, name: "Kaktus Mini Set (3pcs)", cat: "indoor", price: 50000, emoji: "🌵", desc: "Set dekorasi meja kerja", fullDesc: "Set 3 kaktus mini unik untuk dekorasi meja kerja atau ruang tamu. Cocok untuk hadiah atau koleksi pribadi. Tahan lama dan tidak perlu sering disiram.", images: ["🌵", "🌵", "🌵"], specs: { umur: "Matang", tinggi: "10-15cm", perawatan: "Sangat Mudah" }, stock: 14 },
 
     // ===== CHATBOT RESPONSES =====
     const chatbotResponses = {
@@ -948,12 +883,12 @@
 
     // ===== TESTIMONIALS DATA =====
     const testimonials = [
-      { name: "Budi Santoso", address: "Jakarta", rating: 5, product: "Bibit Mangga Harum Manis", text: "Bibit mangganya berkualitas banget! Sudah berbuah lebih cepat dari estimasi. Toko ini recommended! 👌", timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000) },
-      { name: "Siti Nur Azizah", address: "Bandung", rating: 5, product: "Monstera Deliciosa", text: "Monstera-nya sehat dan tumbuh subur. Pelayanan customer service sangat responsif. Terima kasih! 🌿", timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000) },
-      { name: "Rudi Hermawan", address: "Surabaya", rating: 5, product: "Bibit Cabai Rawit", text: "Bibit cabai rawit-nya panen melimpah! Kualitas terbaik dengan harga bersahabat. Balik lagi deh! 🌶️", timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) },
-      { name: "Dewi Lestari", address: "Medan", rating: 5, product: "Bibit Durian Musang King", text: "Durian musang king-nya tumbuh subur dan sehat. Bibitnya berkualitas premium seperti deskripsi. Puas banget! 🍈", timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) },
-      { name: "Ahmad Wijaya", address: "Yogyakarta", rating: 5, product: "Pothos Golden", text: "Tanaman rambat ini tumbuh cepat dan mudah dirawat. Cocok banget untuk hiasan di ruang kerja. Recommended! 💚", timestamp: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) },
-      { name: "Waluyo", address: "Banyumas", rating: 5, product: "Bibit Alpukat Mentega", text: "Bibit alpukat mentega-nya tumbuh subur dan sehat. Kualitasnya bagus dan harga terjangkau. Recommended! 🥑", timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000) },
+      { name: "Budi Santoso", address: "Banyumas", rating: 5, product: "Bibit Manggis Sambung", text: "Bibit Manggis Sambung berkualitas banget! Sudah berbuah lebih cepat dari estimasi. Toko ini recommended! 👌", timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000) },
+      { name: "Siti Nur Azizah", address: "Banyumas", rating: 5, product: "Palem Merah", text: "Palem Merah-nya sehat dan tumbuh subur. Pelayanan customer service sangat responsif. Terima kasih! 🌴", timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000) },
+      { name: "Rudi Hermawan", address: "Banyumas", rating: 5, product: "Kopi Sambung Arabika", text: "Kopi Sambung Arabika-nya kualitasnya bagus dan harga terjangkau. Recommended! ☕🫘", timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) },
+      { name: "Dewi Lestari", address: "Banyumas", rating: 5, product: "Palem Qul / Kipas", text: "Palem Qul / Kipas-nya tumbuh subur dan sehat. Bibitnya berkualitas premium seperti deskripsi. Puas banget! 🍈", timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) },
+      { name: "Ahmad Wijaya", address: "Banyumas", rating: 5, product: "Bunga Tabubuya Kuning", text: "Bunga Tabubuya Kuning-nya cantik dan tumbuh subur. Recommended! 🌼", timestamp: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) },
+      { name: "Waluyo", address: "Banyumas", rating: 5, product: "Dukuh Sambung", text: "Bibit Dukuh Sambung-nya tumbuh subur dan sehat, semoga cepat berbuah. Kualitasnya bagus dan harga terjangkau. Recommended! 🥑", timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000) },
     ];
 
     function getTimeAgo(date) {
